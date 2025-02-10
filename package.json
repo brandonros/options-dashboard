@@ -1,0 +1,29 @@
+{
+  "name": "options-dashboard",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --noEmit && node build.js",
+    "serve": "http-server -p 8080 -c-1 dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@types/react-window": "^1.8.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-virtualized-auto-sizer": "^1.0.20",
+    "react-window": "^1.8.9"
+  },
+  "devDependencies": {
+    "esbuild": "0.19.6",
+    "esbuild-copy-static-files": "^0.1.0",
+    "http-server": "^14.1.1",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.3"
+  }
+}
