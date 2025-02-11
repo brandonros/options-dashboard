@@ -4,7 +4,7 @@ import { TableVirtualGrid } from './TableVirtualGrid';
 import { useTableScrollSync } from '../../hooks/useTableScrollSync';
 import { useTableOperations } from '../../hooks/useTableOperations';
 import { TableProps } from '../../types';
-import { exportCsv } from '../../utils/exportCsv';
+import { exportCsv, exportJson } from '../../utils/export';
 
 const STYLES = {
     container: {
@@ -61,7 +61,8 @@ export const DataTable = ({
         <div style={STYLES.container}>
             <div style={STYLES.summary}>
                 <span>{processedRows.length} / {totalRows} rows</span><br />
-                <input type="button" onClick={() => exportCsv(processedRows)} value="export" />
+                <input type="button" onClick={() => exportCsv(processedRows)} value="export csv" />
+                <input type="button" onClick={() => exportJson(processedRows)} value="export json" />
             </div>
 
             <TableHeader

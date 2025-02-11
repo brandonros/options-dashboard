@@ -34,3 +34,12 @@ export const exportCsv = (filteredRows: Row[]) => {
     const blob = new Blob([stringifiedOutput], { type: 'text/csv' });
     downloadFile(blob, 'output.csv')
 }
+
+export const exportJson = (filteredRows: Row[]) => {
+    if (filteredRows.length === 0) {
+        return
+    }
+    const stringifiedOutput = JSON.stringify(filteredRows, undefined, 2)
+    const blob = new Blob([stringifiedOutput], { type: 'application/json' });
+    downloadFile(blob, 'output.json')
+}
