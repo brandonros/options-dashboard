@@ -31,6 +31,7 @@ export const DataTable = ({
     setFilters,
     setSorts 
 }: TableProps) => {
+    const [hoverRowIndex, setHoverRowIndex] = useState<number>(-1);
     const { gridRef, headerRef, handleGridScroll } = useTableScrollSync();
     const { processedRows, totalRows } = useTableOperations(rows, filters, sorts);
 
@@ -57,6 +58,18 @@ export const DataTable = ({
         }
     };
 
+    const handleRowHover = (rowIndex: number, isHovered: boolean) => {
+        console.log('rowIndex', rowIndex, 'isHovered', isHovered);
+        setHoverRowIndex(isHovered ? rowIndex : -1);
+    };
+
+    const handleRowClick = (rowIndex: number) => {
+        const row = processedRows[rowIndex];
+        navigator.clipboard.writeText(JSON.stringify(row, null, 2))
+            .then(() => console.log('Row data copied to clipboard'))
+            .catch(err => console.error('Failed to copy to clipboard:', err));
+    };
+
     return (
         <div style={STYLES.container}>
             <div style={STYLES.summary}>
@@ -79,7 +92,10 @@ export const DataTable = ({
                     ref={gridRef}
                     columns={columns}
                     rows={processedRows}
+                    hoverRowIndex={hoverRowIndex}
                     onScroll={handleGridScroll}
+                    onRowHover={handleRowHover}
+                    onRowClick={handleRowClick}
                 />
             </div>
         </div>

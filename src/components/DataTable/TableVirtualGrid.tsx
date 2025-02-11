@@ -7,7 +7,10 @@ import { TableCell } from './TableCell';
 export const TableVirtualGrid = forwardRef<VariableSizeGrid, TableVirtualGridProps>(({
     columns,
     rows,
-    onScroll
+    hoverRowIndex,
+    onScroll,
+    onRowHover,
+    onRowClick
 }, ref) => {
     const getColumnWidth = (index: number) => columns[index].width;
     const getRowHeight = () => 20; // Could be made configurable
@@ -32,6 +35,9 @@ export const TableVirtualGrid = forwardRef<VariableSizeGrid, TableVirtualGridPro
                             style={style}
                             columns={columns}
                             rows={rows}
+                            hoverRowIndex={hoverRowIndex}
+                            onRowHover={onRowHover}
+                            onRowClick={onRowClick}
                         />
                     )}
                 </VariableSizeGrid>

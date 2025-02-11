@@ -6,8 +6,12 @@ export const TableCell = ({
     rowIndex,
     style,
     columns,
-    rows
+    rows,
+    hoverRowIndex,
+    onRowHover,
+    onRowClick,
 }: TableCellProps) => {
+    console.log('hoverRowIndex', hoverRowIndex);
     const columnName = columns[columnIndex].name;
     const columnType = columns[columnIndex].type;
     const row = rows[rowIndex];
@@ -17,13 +21,19 @@ export const TableCell = ({
         borderRight: '1px solid black',
         borderBottom: '1px solid black',
         borderLeft: columnIndex === 0 ? '1px solid black' : 'none', // left most cell
+        backgroundColor: rowIndex === hoverRowIndex ? '#ffeb3b' : 'inherit',
     };
 
     const cellValue = row[columnName as keyof Row];
     const cellValueFormatted = columnType === 'percentage' ? `${cellValue}%` : columnType === 'currency' ? `$${cellValue}` : cellValue;
 
     return (
-        <div style={cellStyle}>
+        <div 
+            style={cellStyle}
+            onMouseEnter={() => onRowHover(rowIndex, true)}
+            onMouseLeave={() => onRowHover(rowIndex, false)}
+            onClick={() => onRowClick(rowIndex)}
+        >
             {cellValueFormatted}
         </div>
     );
