@@ -34,6 +34,7 @@ export const DataTable = ({
 }: TableProps) => {
     const [hoverRowIndex, setHoverRowIndex] = useState<number>(-1);
     const [isRefreshing, setIsRefreshing] = useState(false);
+    const [isPurging, setIsPurging] = useState(false);
     const { gridRef, headerRef, handleGridScroll } = useTableScrollSync();
     const { processedRows, totalRows } = useTableOperations(rows, filters, sorts);
 
@@ -83,6 +84,17 @@ export const DataTable = ({
         }
     };
 
+    const handlePurgeClick = async () => {
+        setIsPurging(true);
+        try {
+            await dataService.purgeTableData();
+        } catch (err) {
+            console.error('Failed to purge table data:', err);
+        } finally {
+            setIsPurging(false);
+        }
+    };
+
     return (
         <div style={STYLES.container}>
             <div style={STYLES.summary}>
@@ -92,6 +104,12 @@ export const DataTable = ({
                     onClick={handleRefreshClick} 
                     value={isRefreshing ? "refreshing..." : "refresh"}
                     disabled={isRefreshing}
+                />
+                <input 
+                    type="button" 
+                    onClick={handlePurgeClick} 
+                    value={isPurging ? "purging..." : "purge"}
+                    disabled={isPurging}
                 />
                 <input type="button" onClick={() => exportCsv(processedRows)} value="export csv" />
                 <input type="button" onClick={() => exportJson(processedRows)} value="export json" />
