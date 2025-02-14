@@ -47,8 +47,18 @@ export default () => {
     };
 
     return (
-        <div style={{ height: '100%' }}>
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px', padding: '12px 0' }}>
+        <div style={{ 
+            height: '100vh',
+            display: 'flex',
+            flexDirection: 'column',
+            overflow: 'hidden'
+        }}>
+            <div style={{ 
+                display: 'flex', 
+                justifyContent: 'flex-end', 
+                gap: '8px', 
+                padding: '12px 0' 
+            }}>
                 <input 
                     type="button" 
                     onClick={handlePurgeClick} 
@@ -65,14 +75,16 @@ export default () => {
                 <input type="button" onClick={() => exportJson(processedRows)} value="export json" />
             </div>
 
-            <DataTable
-                filters={filters}
-                sorts={sorts}
-                columns={COLUMNS}
-                rows={rows}
-                setFilters={setFilters}
-                setSorts={setSorts}
-            />
+            <div style={{ flex: 1, minHeight: 0, paddingBottom: '20px' }}>
+                <DataTable
+                    filters={filters}
+                    sorts={sorts}
+                    columns={COLUMNS}
+                    rows={rows}
+                    setFilters={setFilters}
+                    setSorts={setSorts}
+                />
+            </div>
         </div>
     );
 };

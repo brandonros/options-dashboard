@@ -20,6 +20,8 @@ const STYLES = {
     gridWrapper: {
         flex: 1,
         minHeight: 0, // Important for proper flex behavior
+        position: 'relative' as const,
+        height: '100%'
     }
 };
 
