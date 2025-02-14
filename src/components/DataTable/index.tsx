@@ -4,8 +4,7 @@ import { TableVirtualGrid } from './TableVirtualGrid';
 import { useTableScrollSync } from '../../hooks/useTableScrollSync';
 import { useTableOperations } from '../../hooks/useTableOperations';
 import { TableProps } from '../../types';
-import { exportCsv, exportJson } from '../../utils/export';
-import { dataService } from '../../services/dataService';
+import { TableContext } from '../../context/TableContext';
 
 const STYLES = {
     container: {
@@ -33,10 +32,8 @@ export const DataTable = ({
     setSorts 
 }: TableProps) => {
     const [hoverRowIndex, setHoverRowIndex] = useState<number>(-1);
-    const [isRefreshing, setIsRefreshing] = useState(false);
-    const [isPurging, setIsPurging] = useState(false);
     const { gridRef, headerRef, handleGridScroll } = useTableScrollSync();
-    const { processedRows, totalRows } = useTableOperations(rows, filters, sorts);
+    const tableOperations = useTableOperations(rows, filters, sorts);
 
     const handleFilterChange = (key: string, value: string) => {
         setFilters({
@@ -67,74 +64,40 @@ export const DataTable = ({
     };
 
     const handleRowClick = (rowIndex: number) => {
-        const row = processedRows[rowIndex];
+        const row = tableOperations.processedRows[rowIndex];
         navigator.clipboard.writeText(JSON.stringify(row, null, 2))
             .then(() => console.log('Row data copied to clipboard'))
             .catch(err => console.error('Failed to copy to clipboard:', err));
     };
 
-    const handleRefreshClick = async () => {
-        setIsRefreshing(true);
-        try {
-            await dataService.refreshTableData();
-        } catch (err) {
-            console.error('Failed to refresh table data:', err);
-        } finally {
-            setIsRefreshing(false);
-        }
-    };
-
-    const handlePurgeClick = async () => {
-        setIsPurging(true);
-        try {
-            await dataService.purgeTableData();
-        } catch (err) {
-            console.error('Failed to purge table data:', err);
-        } finally {
-            setIsPurging(false);
-        }
-    };
-
     return (
-        <div style={STYLES.container}>
-            <div style={STYLES.summary}>
-                <span>{processedRows.length} / {totalRows} rows</span><br />
-                <input 
-                    type="button" 
-                    onClick={handleRefreshClick} 
-                    value={isRefreshing ? "refreshing..." : "refresh"}
-                    disabled={isRefreshing}
-                />
-                <input 
-                    type="button" 
-                    onClick={handlePurgeClick} 
-                    value={isPurging ? "purging..." : "purge"}
-                    disabled={isPurging}
-                />
-                <input type="button" onClick={() => exportCsv(processedRows)} value="export csv" />
-                <input type="button" onClick={() => exportJson(processedRows)} value="export json" />
-            </div>
+        <TableContext.Provider value={tableOperations}>
+            <div style={STYLES.container}>
+                <div style={STYLES.summary}>
+                    <span>{tableOperations.processedRows.length} / {tableOperations.totalRows} rows</span><br />
+                </div>
 
-            <TableHeader
-                ref={headerRef}
-                columns={columns}
-                filters={filters}
-                sorts={sorts}
-                onFilterChange={handleFilterChange}
-                onSortChange={handleSortChange}
-            />
-
-            <div style={STYLES.gridWrapper}>
-                <TableVirtualGrid
-                    ref={gridRef}
+                <TableHeader
+                    ref={headerRef}
                     columns={columns}
-                    rows={processedRows}
-                    hoverRowIndex={hoverRowIndex}
-                    onScroll={handleGridScroll}
-                    onRowHover={handleRowHover}
-                    onRowClick={handleRowClick}
+                    filters={filters}
+                    sorts={sorts}
+                    onFilterChange={handleFilterChange}
+                    onSortChange={handleSortChange}
                 />
+
+                <div style={STYLES.gridWrapper}>
+                    <TableVirtualGrid
+                        ref={gridRef}
+                        columns={columns}
+                        rows={tableOperations.processedRows}
+                        hoverRowIndex={hoverRowIndex}
+                        onScroll={handleGridScroll}
+                        onRowHover={handleRowHover}
+                        onRowClick={handleRowClick}
+                    />
+                </div>
             </div>
-        </div>
+        </TableContext.Provider>
     );
 };
