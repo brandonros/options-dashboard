@@ -1,6 +1,6 @@
 import { Row } from "../types";
 
-export const parseCsv = (data: string) => {
+export const parseCsv = <T>(data: string): T[] => {
     // Split into rows by newline and filter out empty lines
     const rows = data.split('\n')
         .filter(row => row.trim().length > 0);
@@ -21,7 +21,7 @@ export const parseCsv = (data: string) => {
             obj[header] = values[index] || ''; // Use empty string for missing values
         });
         
-        return obj as unknown as Row;
+        return obj as unknown as T;
     });
     
     return result;

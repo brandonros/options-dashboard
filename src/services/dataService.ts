@@ -1,4 +1,4 @@
-import { Rows } from "../types";
+import { Row, Rows } from "../types";
 import { parseCsv } from "../utils/csvParser";
 
 export const dataService = {
@@ -22,7 +22,7 @@ export const dataService = {
                         distanceDays: 60,
                         moneynessDistance: 0.25
                     },
-                    id: 1
+                    id: crypto.randomUUID()
                 })
             });
             const data = await response.json();
@@ -50,7 +50,7 @@ export const dataService = {
         if (data.error) {
             throw new Error(data.error.message);
         }
-        return parseCsv(data.result);
+        return parseCsv<Row>(data.result);
     },
 
     async purgeTableData(): Promise<void> {
