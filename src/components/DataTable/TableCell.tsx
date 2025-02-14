@@ -22,10 +22,27 @@ export const TableCell = ({
         borderBottom: '1px solid black',
         borderLeft: columnIndex === 0 ? '1px solid black' : 'none', // left most cell
         backgroundColor: rowIndex === hoverRowIndex ? '#ffeb3b' : 'inherit',
+        cursor: 'pointer',
+    };
+
+    const formatCellValue = (value: any, type: string) => {
+        if (type === 'percentage') {
+            return `${value}%`;
+        }
+        if (type === 'currency') {
+            return `$${value}`;
+        }
+        if (type === 'date') {
+            return new Date(value).toISOString().split('T')[0];
+        }
+        if (type === 'datetime') {
+            return new Date(value).toISOString();
+        }
+        return value;
     };
 
     const cellValue = row[columnName as keyof Row];
-    const cellValueFormatted = columnType === 'percentage' ? `${cellValue}%` : columnType === 'currency' ? `$${cellValue}` : cellValue;
+    const cellValueFormatted = formatCellValue(cellValue, columnType);
 
     return (
         <div 

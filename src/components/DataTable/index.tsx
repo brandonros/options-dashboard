@@ -5,6 +5,7 @@ import { useTableScrollSync } from '../../hooks/useTableScrollSync';
 import { useTableOperations } from '../../hooks/useTableOperations';
 import { TableProps } from '../../types';
 import { exportCsv, exportJson } from '../../utils/export';
+import { dataService } from '../../services/dataService';
 
 const STYLES = {
     container: {
@@ -32,6 +33,7 @@ export const DataTable = ({
     setSorts 
 }: TableProps) => {
     const [hoverRowIndex, setHoverRowIndex] = useState<number>(-1);
+    const [isRefreshing, setIsRefreshing] = useState(false);
     const { gridRef, headerRef, handleGridScroll } = useTableScrollSync();
     const { processedRows, totalRows } = useTableOperations(rows, filters, sorts);
 
@@ -70,10 +72,27 @@ export const DataTable = ({
             .catch(err => console.error('Failed to copy to clipboard:', err));
     };
 
+    const handleRefreshClick = async () => {
+        setIsRefreshing(true);
+        try {
+            await dataService.refreshTableData();
+        } catch (err) {
+            console.error('Failed to refresh table data:', err);
+        } finally {
+            setIsRefreshing(false);
+        }
+    };
+
     return (
         <div style={STYLES.container}>
             <div style={STYLES.summary}>
                 <span>{processedRows.length} / {totalRows} rows</span><br />
+                <input 
+                    type="button" 
+                    onClick={handleRefreshClick} 
+                    value={isRefreshing ? "refreshing..." : "refresh"}
+                    disabled={isRefreshing}
+                />
                 <input type="button" onClick={() => exportCsv(processedRows)} value="export csv" />
                 <input type="button" onClick={() => exportJson(processedRows)} value="export json" />
             </div>

@@ -17,14 +17,6 @@ esbuild.build({
       errorOnExist: false,
       preserveTimestamps: true,
       recursive: true,
-    }),
-    copyStaticFiles({
-      src: './assets',
-      dest: './dist/assets',
-      dereference: true,
-      errorOnExist: false,
-      preserveTimestamps: true,
-      recursive: true,
     })
   ]
 })
