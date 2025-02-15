@@ -12,6 +12,7 @@ const STYLES = {
     },
     headerCell: {
         cursor: 'pointer',
+        boxSizing: 'border-box' as const,
         textAlign: 'center' as const,
         fontWeight: 'bold',
         flexGrow: 0,
