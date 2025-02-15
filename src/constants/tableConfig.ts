@@ -38,9 +38,6 @@ export const COLUMNS =[
 
     { name: 'moneyness_ratio', width: 200, type: 'percentage' },
 
-    { name: 'premium_underlying_ratio', width: 200, type: 'percentage' },
     { name: 'premium_iv_ratio', width: 200, type: 'percentage' },
-    { name: 'theta_premium_ratio', width: 200, type: 'percentage' },
     { name: 'theta_efficiency', width: 200, type: 'percentage' },
-    { name: 'premium_to_breakeven', width: 200, type: 'percentage' },
 ]
