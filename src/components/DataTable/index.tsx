@@ -27,8 +27,15 @@ interface DataTableProps {
     columns: any[]; // Define proper type for columns
 }
 
+interface PopupState {
+    isVisible: boolean;
+    x: number;
+    y: number;
+}
+
 export const DataTable: React.FC<DataTableProps> = ({ columns }) => {
     const [hoverRowIndex, setHoverRowIndex] = useState<number>(-1);
+    const [popup, setPopup] = useState<PopupState>({ isVisible: false, x: 0, y: 0 });
     const { gridRef, headerRef, handleGridScroll } = useTableScrollSync();
     const { 
         filters, 
@@ -67,12 +74,19 @@ export const DataTable: React.FC<DataTableProps> = ({ columns }) => {
         setHoverRowIndex(isHovered ? rowIndex : -1);
     };
 
-    const handleRowClick = (rowIndex: number) => {
+    const handleRowClick = (rowIndex: number, event: React.MouseEvent) => {
+        setPopup({
+            isVisible: true,
+            x: event.clientX,
+            y: event.clientY
+        });
         const row = processedRows[rowIndex];
         navigator.clipboard.writeText(JSON.stringify(row, null, 2))
-            .then(() => console.log('Row data copied to clipboard'))
-            .catch(err => console.error('Failed to copy to clipboard:', err));
-    };
+        .then(() => {
+            console.log('Row data copied to clipboard');
+        })
+        .catch(err => console.error('Failed to copy to clipboard:', err));
+};
 
     return (
         <div style={STYLES.container}>
@@ -97,6 +111,20 @@ export const DataTable: React.FC<DataTableProps> = ({ columns }) => {
                     onRowHover={handleRowHover}
                     onRowClick={handleRowClick}
                 />
+                {popup.isVisible && (
+                    <div style={{
+                        position: 'fixed',
+                        left: popup.x,
+                        top: popup.y + 20, // Offset to show below cursor
+                        backgroundColor: 'white',
+                        padding: '8px 12px',
+                        borderRadius: '4px',
+                        boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+                        zIndex: 1000,
+                    }}>
+                        Copied to clipboard!
+                    </div>
+                )}
             </div>
         </div>
     );

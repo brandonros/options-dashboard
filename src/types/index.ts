@@ -72,7 +72,7 @@ export type TableCellProps = {
     rows: Rows,
     hoverRowIndex: number,
     onRowHover: (rowIndex: number, isHovered: boolean) => void,
-    onRowClick: (rowIndex: number) => void
+    onRowClick: (rowIndex: number, event: React.MouseEvent) => void
 }
 
 export type TableHeaderProps = {
@@ -89,5 +89,5 @@ export type TableVirtualGridProps = {
     hoverRowIndex: number,
     onScroll: (event: GridOnScrollProps) => void,
     onRowHover: (rowIndex: number, isHovered: boolean) => void,
-    onRowClick: (rowIndex: number) => void
+    onRowClick: (rowIndex: number, event: React.MouseEvent) => void
 }

@@ -52,7 +52,7 @@ export const TableCell = ({
             style={cellStyle}
             onMouseEnter={() => onRowHover(rowIndex, true)}
             onMouseLeave={() => onRowHover(rowIndex, false)}
-            onClick={() => onRowClick(rowIndex)}
+            onClick={(event) => onRowClick(rowIndex, event)}
         >
             {cellValueFormatted}
         </div>
