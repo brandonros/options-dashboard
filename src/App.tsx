@@ -62,7 +62,11 @@ export default () => {
                 padding: '12px 0' 
             }}>
                 {oldestRow && (
-                    <span>Last updated: {oldestRow.scraped_at}</span>
+                    <span>Last updated: {new Intl.DateTimeFormat('en-US', {
+                        timeZone: 'America/New_York',
+                        dateStyle: 'medium',
+                        timeStyle: 'short'
+                    }).format(new Date(oldestRow.scraped_at))}</span>
                 )}
                 <input 
                     type="button" 
