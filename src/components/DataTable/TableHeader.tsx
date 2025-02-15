@@ -27,6 +27,9 @@ const STYLES = {
         padding: '4px 6px',
         margin: 0,
         width: '100%',
+        borderRadius: '0',
+        WebkitBorderRadius: '0',
+        MozBorderRadius: '0',
     }
 };
 

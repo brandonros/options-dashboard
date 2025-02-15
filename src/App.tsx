@@ -14,6 +14,14 @@ const AppContent = () => {
     const { processedRows, setRows, rows } = useTableContext();
     const { loadData } = useTableData(setRows);
 
+    const STYLES = {
+        button: {
+            borderRadius: '0',
+            WebkitBorderRadius: '0',
+            MozBorderRadius: '0',
+        }
+    };
+
     useEffect(() => {
         if (rows.length > 0) {
             const oldest = rows.reduce((oldest, current) => {
@@ -66,8 +74,8 @@ const AppContent = () => {
                     value={isUpdating ? "updating..." : "update"}
                     disabled={isUpdating}
                 />
-                <input type="button" onClick={() => exportCsv(processedRows)} value="export csv" />
-                <input type="button" onClick={() => exportJson(processedRows)} value="export json" />
+                <input style={STYLES.button} type="button" onClick={() => exportCsv(processedRows)} value="export csv" />
+                <input style={STYLES.button} type="button" onClick={() => exportJson(processedRows)} value="export json" />
             </div>
 
             <div style={{ flex: 1, minHeight: 0, paddingBottom: '20px' }}>
