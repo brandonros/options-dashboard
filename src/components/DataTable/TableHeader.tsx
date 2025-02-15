@@ -16,6 +16,7 @@ const STYLES = {
         fontWeight: 'bold',
         flexGrow: 0,
         flexShrink: 0,
+        border: '1px solid black',
     },
     filterCell: {
         textAlign: 'center' as const,
@@ -33,6 +34,9 @@ const STYLES = {
         MozBorderRadius: '0',
     },
     filterInputNotFirst: {
+        borderLeft: 'none',
+    },
+    headerCellNotFirst: {
         borderLeft: 'none',
     }
 };
@@ -53,10 +57,14 @@ export const TableHeader = forwardRef<HTMLDivElement, TableHeaderProps>(({
     return (
         <div ref={ref} style={STYLES.container}>
             <div style={STYLES.row}>
-                {columns.map((column) => (
+                {columns.map((column, index) => (
                     <div
                         key={`header-${column.name}`}
-                        style={{ ...STYLES.headerCell, flexBasis: calculateColumnWidth(column) }}
+                        style={{
+                            ...STYLES.headerCell,
+                            flexBasis: calculateColumnWidth(column),
+                            ...(index > 0 ? STYLES.headerCellNotFirst : {})
+                        }}
                         onClick={() => onSortChange(column.name, column.type)}
                     >
                         {column.name} {getSortIndicator(sorts, column.name)}
