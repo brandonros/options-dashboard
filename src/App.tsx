@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { DataTable } from "./components/DataTable";
-import { Filters, Sorts, Rows } from './types';
+import { Filters, Sorts, Rows, Row } from './types';
 import { COLUMNS } from './constants/tableConfig';
 import { useTableData } from './hooks/useTableData';
 import { dataService } from './services/dataService';
@@ -9,6 +9,7 @@ import { useTableContext } from './context/TableContext';
 
 export default () => {
     const [isRefreshing, setIsRefreshing] = useState(false);
+    const [oldestRow, setOldestRow] = useState<Row | null>(null);    
     const [filters, setFilters] = useState<Filters>({});
     const [sorts, setSorts] = useState<Sorts>([
         {
@@ -20,6 +21,19 @@ export default () => {
     const [rows, setRows] = useState<Rows>([]);
     const { processedRows } = useTableContext();
     const { refreshData } = useTableData(setRows);
+
+    useEffect(() => {
+        if (rows.length > 0) {
+            const oldest = rows.reduce((oldest, current) => {
+                return new Date(oldest.scraped_at) <= new Date(current.scraped_at) 
+                    ? oldest 
+                    : current;
+            });
+            setOldestRow(oldest);
+        } else {
+            setOldestRow(null);
+        }
+    }, [rows]);
 
     const handleRefreshClick = async () => {
         setIsRefreshing(true);
@@ -47,6 +61,9 @@ export default () => {
                 gap: '8px', 
                 padding: '12px 0' 
             }}>
+                {oldestRow && (
+                    <span>Last updated: {oldestRow.scraped_at}</span>
+                )}
                 <input 
                     type="button" 
                     onClick={handleRefreshClick} 

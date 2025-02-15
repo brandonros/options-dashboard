@@ -1,18 +1,19 @@
 export const COLUMNS =[
+    { name: 'instrument_type', width: 125, type: 'string' },
+
     { name: 'symbol', width: 100, type: 'string' },
     { name: 'underlying_last_trade_price', width: 200, type: 'currency' },
-
-    { name: 'instrument_type', width: 125, type: 'string' },
-    { name: 'expiration_date', width: 125, type: 'date' },
     { name: 'strike_price', width: 100, type: 'currency' },
+    { name: 'moneyness_distance', width: 150, type: 'percentage' },
+    { name: 'expiration_date', width: 125, type: 'date' },
+    { name: 'days_to_expiration', width: 200, type: 'number' },
 
-    { name: 'scraped_at', width: 250, type: 'datetime' },
     { name: 'secured_ror', width: 100, type: 'percentage' },
     { name: 'naked_ror', width: 100, type: 'percentage' },
     { name: 'prob_itm_at_expiration', width: 200, type: 'percentage' },
     { name: 'bid_price', width: 100, type: 'currency' },
-    { name: 'ask_price', width: 100, type: 'currency' },
     { name: 'mark_price', width: 100, type: 'currency' },
+    { name: 'ask_price', width: 100, type: 'currency' },
 
     { name: 'implied_volatility', width: 150, type: 'percentage' },
     { name: 'delta', width: 100, type: 'number' },
@@ -34,10 +35,8 @@ export const COLUMNS =[
     { name: 'break_even', width: 200, type: 'currency' },
     { name: 'distance_to_breakeven', width: 200, type: 'currency' },
 
-    { name: 'moneyness_distance', width: 150, type: 'percentage' },
-    { name: 'moneyness_ratio', width: 200, type: 'percentage' },
 
-    { name: 'days_to_expiration', width: 200, type: 'number' },
+    { name: 'moneyness_ratio', width: 200, type: 'percentage' },
 
     { name: 'premium_underlying_ratio', width: 200, type: 'percentage' },
     { name: 'premium_iv_ratio', width: 200, type: 'percentage' },
