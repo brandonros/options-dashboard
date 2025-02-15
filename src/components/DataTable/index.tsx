@@ -124,7 +124,9 @@ export const DataTable: React.FC<DataTableProps> = ({ columns }) => {
                         boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
                         zIndex: 1000,
                     }}>
-                        <textarea style={{ width: '650px', height: '650px' }} value={JSON.stringify(processedRows[popup.rowIndex], null, 2)} />
+                        <code>
+                            {JSON.stringify(processedRows[popup.rowIndex], null, 2)}
+                        </code>
                     </div>
                 )}
             </div>
