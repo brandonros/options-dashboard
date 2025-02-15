@@ -46,10 +46,10 @@ export const TableHeader = forwardRef<HTMLDivElement, TableHeaderProps>(({
     return (
         <div ref={ref} style={STYLES.container}>
             <div style={STYLES.row}>
-                {columns.map(({ name, width, type }) => (
+                {columns.map(({ name, type }) => (
                     <div
                         key={`header-${name}`}
-                        style={{ ...STYLES.headerCell, flexBasis: width }}
+                        style={{ ...STYLES.headerCell, flexBasis: name.length * 10 }}
                         onClick={() => onSortChange(name, type)}
                     >
                         {name} {getSortIndicator(sorts, name)}
@@ -57,10 +57,10 @@ export const TableHeader = forwardRef<HTMLDivElement, TableHeaderProps>(({
                 ))}
             </div>
             <div style={STYLES.row}>
-                {columns.map(({ name, width }) => (
+                {columns.map(({ name }) => (
                     <div 
                         key={`filter-${name}`} 
-                        style={{ ...STYLES.filterCell, flexBasis: width }}
+                        style={{ ...STYLES.filterCell, flexBasis: name.length * 10 }}
                     >
                         <input
                             type="text"
