@@ -14,7 +14,6 @@ export type Sorts = Sort[];
 // Column types
 export interface Column {
     name: string;
-    width: number;
     type: string;
 }
 
