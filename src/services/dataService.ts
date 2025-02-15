@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { Row, Rows } from "../types";
 import { parseCsv } from "../utils/csvParser";
 
@@ -22,7 +23,7 @@ export const dataService = {
                         distanceDays: 60,
                         moneynessDistance: 0.25
                     },
-                    id: crypto.randomUUID()
+                    id: uuidv4()
                 })
             });
             const data = await response.json();

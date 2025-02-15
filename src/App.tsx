@@ -9,7 +9,6 @@ import { useTableContext } from './context/TableContext';
 
 export default () => {
     const [isRefreshing, setIsRefreshing] = useState(false);
-    const [isPurging, setIsPurging] = useState(false);
     const [filters, setFilters] = useState<Filters>({});
     const [sorts, setSorts] = useState<Sorts>([
         {
@@ -25,24 +24,13 @@ export default () => {
     const handleRefreshClick = async () => {
         setIsRefreshing(true);
         try {
+            await dataService.purgeTableData();
             await dataService.refreshTableData();
             await refreshData();
         } catch (err) {
             console.error('Failed to refresh table data:', err);
         } finally {
             setIsRefreshing(false);
-        }
-    };
-
-    const handlePurgeClick = async () => {
-        setIsPurging(true);
-        try {
-            await dataService.purgeTableData();
-            await refreshData();
-        } catch (err) {
-            console.error('Failed to purge table data:', err);
-        } finally {
-            setIsPurging(false);
         }
     };
 
@@ -59,12 +47,6 @@ export default () => {
                 gap: '8px', 
                 padding: '12px 0' 
             }}>
-                <input 
-                    type="button" 
-                    onClick={handlePurgeClick} 
-                    value={isPurging ? "purging..." : "purge"}
-                    disabled={isPurging}
-                />
                 <input 
                     type="button" 
                     onClick={handleRefreshClick} 
