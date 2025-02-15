@@ -10,11 +10,11 @@ export const COLUMNS =[
     { name: 'days_to_expiration', width: 200, type: 'number' },
 
     { name: 'daily_secured_ror_iv_ratio', width: 250, type: 'percentage' },
-    { name: 'daily_naked_ror_iv_ratio', width: 250, type: 'percentage' },
-
     { name: 'daily_secured_ror', width: 150, type: 'percentage' },
-    { name: 'daily_naked_ror', width: 150, type: 'percentage' },
     { name: 'secured_ror', width: 100, type: 'percentage' },
+
+    { name: 'daily_naked_ror_iv_ratio', width: 250, type: 'percentage' },
+    { name: 'daily_naked_ror', width: 150, type: 'percentage' },
     { name: 'naked_ror', width: 100, type: 'percentage' },
 
     { name: 'bid_price', width: 100, type: 'currency' },
