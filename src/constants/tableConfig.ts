@@ -9,10 +9,10 @@ export const COLUMNS =[
     { name: 'expiration_date', width: 125, type: 'date' },
     { name: 'days_to_expiration', width: 200, type: 'number' },
 
-    { name: 'secured_ror', width: 100, type: 'percentage' },
-    { name: 'naked_ror', width: 100, type: 'percentage' },
     { name: 'daily_secured_ror', width: 150, type: 'percentage' },
     { name: 'daily_naked_ror', width: 150, type: 'percentage' },
+    { name: 'secured_ror', width: 100, type: 'percentage' },
+    { name: 'naked_ror', width: 100, type: 'percentage' },
 
     { name: 'bid_price', width: 100, type: 'currency' },
     { name: 'mark_price', width: 100, type: 'currency' },
