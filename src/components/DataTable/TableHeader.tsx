@@ -18,6 +18,9 @@ const STYLES = {
         flexGrow: 0,
         flexShrink: 0,
         border: '1px solid black',
+        borderBottom: 'none',
+        padding: '4px 6px',
+        margin: 0
     },
     filterCell: {
         textAlign: 'center' as const,
