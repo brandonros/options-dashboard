@@ -23,7 +23,7 @@ export const TableCell = ({
         borderLeft: columnIndex === 0 ? '1px solid black' : 'none', // left most cell
         backgroundColor: rowIndex === hoverRowIndex ? '#ffeb3b' : 'inherit',
         cursor: 'pointer',
-        padding: `5px`,
+        padding: `1px`,
         boxSizing: 'border-box' as const,
         display: 'flex',
     };
