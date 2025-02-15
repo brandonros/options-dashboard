@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { TableHeader } from './TableHeader';
 import { TableVirtualGrid } from './TableVirtualGrid';
 import { useTableScrollSync } from '../../hooks/useTableScrollSync';
-import { useTableOperations } from '../../hooks/useTableOperations';
-import { TableProps } from '../../types';
-import { TableContext } from '../../context/TableContext';
+import { TableContextType, useTableContext } from '../../providers/TableProvider';
 
 const STYLES = {
     container: {
@@ -25,17 +23,21 @@ const STYLES = {
     }
 };
 
-export const DataTable = ({ 
-    filters,
-    sorts,
-    columns,
-    rows,
-    setFilters,
-    setSorts 
-}: TableProps) => {
+interface DataTableProps {
+    columns: any[]; // Define proper type for columns
+}
+
+export const DataTable: React.FC<DataTableProps> = ({ columns }) => {
     const [hoverRowIndex, setHoverRowIndex] = useState<number>(-1);
     const { gridRef, headerRef, handleGridScroll } = useTableScrollSync();
-    const tableOperations = useTableOperations(rows, filters, sorts);
+    const { 
+        filters, 
+        sorts, 
+        processedRows, 
+        totalRows,
+        setFilters,
+        setSorts
+    } = useTableContext();
 
     const handleFilterChange = (key: string, value: string) => {
         setFilters({
@@ -66,40 +68,36 @@ export const DataTable = ({
     };
 
     const handleRowClick = (rowIndex: number) => {
-        const row = tableOperations.processedRows[rowIndex];
+        const row = processedRows[rowIndex];
         navigator.clipboard.writeText(JSON.stringify(row, null, 2))
             .then(() => console.log('Row data copied to clipboard'))
             .catch(err => console.error('Failed to copy to clipboard:', err));
     };
 
     return (
-        <TableContext.Provider value={tableOperations}>
-            <div style={STYLES.container}>
-                <div style={STYLES.summary}>
-                    <span>{tableOperations.processedRows.length} / {tableOperations.totalRows} rows</span><br />
-                </div>
-
-                <TableHeader
-                    ref={headerRef}
-                    columns={columns}
-                    filters={filters}
-                    sorts={sorts}
-                    onFilterChange={handleFilterChange}
-                    onSortChange={handleSortChange}
-                />
-
-                <div style={STYLES.gridWrapper}>
-                    <TableVirtualGrid
-                        ref={gridRef}
-                        columns={columns}
-                        rows={tableOperations.processedRows}
-                        hoverRowIndex={hoverRowIndex}
-                        onScroll={handleGridScroll}
-                        onRowHover={handleRowHover}
-                        onRowClick={handleRowClick}
-                    />
-                </div>
+        <div style={STYLES.container}>
+            <div style={STYLES.summary}>
+                <span>{processedRows.length} / {totalRows} rows</span><br />
             </div>
-        </TableContext.Provider>
+
+            <TableHeader
+                ref={headerRef}
+                columns={columns}
+                onFilterChange={handleFilterChange}
+                onSortChange={handleSortChange}
+            />
+
+            <div style={STYLES.gridWrapper}>
+                <TableVirtualGrid
+                    ref={gridRef}
+                    columns={columns}
+                    rows={processedRows}
+                    hoverRowIndex={hoverRowIndex}
+                    onScroll={handleGridScroll}
+                    onRowHover={handleRowHover}
+                    onRowClick={handleRowClick}
+                />
+            </div>
+        </div>
     );
 };

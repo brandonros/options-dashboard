@@ -5,21 +5,12 @@ import { COLUMNS } from './constants/tableConfig';
 import { useTableData } from './hooks/useTableData';
 import { dataService } from './services/dataService';
 import { exportCsv, exportJson } from './utils/export';
-import { useTableContext } from './context/TableContext';
+import { TableProvider, useTableContext } from './providers/TableProvider';
 
-export default () => {
+const AppContent = () => {
     const [isRefreshing, setIsRefreshing] = useState(false);
     const [oldestRow, setOldestRow] = useState<Row | null>(null);    
-    const [filters, setFilters] = useState<Filters>({});
-    const [sorts, setSorts] = useState<Sorts>([
-        {
-            key: 'secured_ror',
-            type: 'percentage',
-            direction: 'desc'
-        }
-    ]);
-    const [rows, setRows] = useState<Rows>([]);
-    const { processedRows } = useTableContext();
+    const { processedRows, setRows, rows } = useTableContext();
     const { refreshData } = useTableData(setRows);
 
     useEffect(() => {
@@ -80,14 +71,23 @@ export default () => {
 
             <div style={{ flex: 1, minHeight: 0, paddingBottom: '20px' }}>
                 <DataTable
-                    filters={filters}
-                    sorts={sorts}
                     columns={COLUMNS}
-                    rows={rows}
-                    setFilters={setFilters}
-                    setSorts={setSorts}
                 />
             </div>
         </div>
+    );
+};
+
+export default () => {
+    return (
+        <TableProvider
+            initialSorts={[{
+                key: 'secured_ror',
+                type: 'percentage',
+                direction: 'desc'
+            }]}
+        >
+            <AppContent />
+        </TableProvider>
     );
 };

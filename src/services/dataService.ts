@@ -44,7 +44,7 @@ export const dataService = {
                 jsonrpc: '2.0',
                 method: 'dump',
                 params: {},
-                id: 1
+                id: uuidv4()
             })
         });
         const data = await response.json();
@@ -64,7 +64,7 @@ export const dataService = {
                 jsonrpc: '2.0',
                 method: 'purge',
                 params: {},
-                id: 1
+                id: uuidv4()
             })
         });
         const data = await response.json();

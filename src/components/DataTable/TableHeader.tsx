@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { TableHeaderProps } from '../../types';
+import { useTableContext } from '../../providers/TableProvider';
 import { getSortIndicator } from '../../utils/tableUtils';
 
 const STYLES = {
@@ -30,13 +30,19 @@ const STYLES = {
     }
 };
 
-export const TableHeader = forwardRef<HTMLDivElement, TableHeaderProps>(({
+interface TableHeaderProps {
+    columns: any[];
+    onFilterChange: (key: string, value: string) => void;
+    onSortChange: (columnName: string, type: string) => void;
+}
+
+export const TableHeader = forwardRef<HTMLDivElement, TableHeaderProps>(({ 
     columns,
-    filters,
-    sorts,
     onFilterChange,
     onSortChange
 }, ref) => {
+    const { filters, sorts } = useTableContext();
+
     return (
         <div ref={ref} style={STYLES.container}>
             <div style={STYLES.row}>
