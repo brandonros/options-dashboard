@@ -41,7 +41,6 @@ export const COLUMNS =[
     { name: 'break_even', width: 200, type: 'currency' },
     { name: 'distance_to_breakeven', width: 200, type: 'currency' },
 
-
     { name: 'moneyness_ratio', width: 200, type: 'percentage' },
 
     { name: 'premium_iv_ratio', width: 200, type: 'percentage' },

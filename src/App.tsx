@@ -44,7 +44,8 @@ const AppContent = () => {
             height: '100vh',
             display: 'flex',
             flexDirection: 'column',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            fontFamily: 'monospace'
         }}>
             <div style={{ 
                 display: 'flex', 
