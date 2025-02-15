@@ -28,6 +28,7 @@ interface DataTableProps {
 }
 
 interface PopupState {
+    rowIndex: number;
     isVisible: boolean;
     x: number;
     y: number;
@@ -35,7 +36,7 @@ interface PopupState {
 
 export const DataTable: React.FC<DataTableProps> = ({ columns }) => {
     const [hoverRowIndex, setHoverRowIndex] = useState<number>(-1);
-    const [popup, setPopup] = useState<PopupState>({ isVisible: false, x: 0, y: 0 });
+    const [popup, setPopup] = useState<PopupState>({ rowIndex: -1, isVisible: false, x: 0, y: 0 });
     const { gridRef, headerRef, handleGridScroll } = useTableScrollSync();
     const { 
         filters, 
@@ -76,7 +77,8 @@ export const DataTable: React.FC<DataTableProps> = ({ columns }) => {
 
     const handleRowClick = (rowIndex: number, event: React.MouseEvent) => {
         setPopup({
-            isVisible: true,
+            rowIndex,
+            isVisible: popup.rowIndex !== rowIndex,
             x: event.clientX,
             y: event.clientY
         });
