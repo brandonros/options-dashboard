@@ -78,7 +78,7 @@ export const DataTable: React.FC<DataTableProps> = ({ columns }) => {
     const handleRowClick = (rowIndex: number, event: React.MouseEvent) => {
         setPopup({
             rowIndex,
-            isVisible: popup.rowIndex !== rowIndex,
+            isVisible: popup.rowIndex !== rowIndex || !popup.isVisible,
             x: event.clientX,
             y: event.clientY
         });
@@ -88,7 +88,7 @@ export const DataTable: React.FC<DataTableProps> = ({ columns }) => {
             console.log('Row data copied to clipboard');
         })
         .catch(err => console.error('Failed to copy to clipboard:', err));
-};
+    };
 
     return (
         <div style={STYLES.container}>
