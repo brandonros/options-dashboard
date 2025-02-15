@@ -9,10 +9,10 @@ import { TableProvider, useTableContext } from './providers/TableProvider';
 import { SYMBOLS } from './constants/symbols';
 
 const AppContent = () => {
-    const [isRefreshing, setIsRefreshing] = useState(false);
+    const [isUpdating, setIsUpdating] = useState(false);
     const [oldestRow, setOldestRow] = useState<Row | null>(null);    
     const { processedRows, setRows, rows } = useTableContext();
-    const { refreshData } = useTableData(setRows);
+    const { loadData } = useTableData(setRows);
 
     useEffect(() => {
         if (rows.length > 0) {
@@ -27,15 +27,15 @@ const AppContent = () => {
         }
     }, [rows]);
 
-    const handleRefreshClick = async () => {
-        setIsRefreshing(true);
+    const handleUpdateClick = async () => {
+        setIsUpdating(true);
         try {
-            await dataService.refreshTableData(SYMBOLS);
-            await refreshData();
+            await dataService.updateTableData(SYMBOLS);
+            await loadData();
         } catch (err) {
-            console.error('Failed to refresh table data:', err);
+            console.error('Failed to update table data:', err);
         } finally {
-            setIsRefreshing(false);
+            setIsUpdating(false);
         }
     };
 
@@ -61,9 +61,9 @@ const AppContent = () => {
                 )}
                 <input 
                     type="button" 
-                    onClick={handleRefreshClick} 
-                    value={isRefreshing ? "refreshing..." : "refresh"}
-                    disabled={isRefreshing}
+                    onClick={handleUpdateClick} 
+                    value={isUpdating ? "updating..." : "update"}
+                    disabled={isUpdating}
                 />
                 <input type="button" onClick={() => exportCsv(processedRows)} value="export csv" />
                 <input type="button" onClick={() => exportJson(processedRows)} value="export json" />

@@ -3,7 +3,7 @@ import { Row, Rows } from "../types";
 import { parseCsv } from "../utils/csvParser";
 
 export const dataService = {
-    async refreshTableData(symbols: string[]): Promise<void> {
+    async updateTableData(symbols: string[]): Promise<void> {
         const response = await fetch('/api/rpc', {
             method: 'POST',
             headers: {

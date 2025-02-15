@@ -23,5 +23,5 @@ export const useTableData = (setRows: (rows: Rows) => void) => {
         };
     }, [loadData]);
 
-    return { refreshData: loadData };
+    return { loadData };
 }; 
