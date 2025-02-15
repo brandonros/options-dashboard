@@ -23,6 +23,9 @@ export const TableCell = ({
         borderLeft: columnIndex === 0 ? '1px solid black' : 'none', // left most cell
         backgroundColor: rowIndex === hoverRowIndex ? '#ffeb3b' : 'inherit',
         cursor: 'pointer',
+        padding: `5px`,
+        boxSizing: 'border-box' as const,
+        display: 'flex',
     };
 
     const formatCellValue = (value: any, type: string) => {
