@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TableHeader } from './TableHeader';
 import { TableVirtualGrid } from './TableVirtualGrid';
 import { useTableScrollSync } from '../../hooks/useTableScrollSync';
-import { TableContextType, useTableContext } from '../../providers/TableProvider';
+import { useTableContext } from '../../providers/TableProvider';
 
 const STYLES = {
     container: {

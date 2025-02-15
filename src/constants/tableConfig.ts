@@ -1,5 +1,5 @@
 export const COLUMNS =[
-    { name: 'instrument_type', width: 125, type: 'string' },
+    { name: 'instrument_type', width: 130, type: 'string' },
 
     { name: 'symbol', width: 100, type: 'string' },
     { name: 'underlying_last_trade_price', width: 200, type: 'currency' },

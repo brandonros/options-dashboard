@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { VariableSizeGrid, GridOnScrollProps } from 'react-window';
+import { VariableSizeGrid } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { TableVirtualGridProps } from '../../types';
 import { TableCell } from './TableCell';
