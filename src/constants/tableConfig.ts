@@ -5,6 +5,7 @@ export const COLUMNS =[
     { name: 'underlying_last_trade_price', width: 200, type: 'currency' },
     { name: 'strike_price', width: 100, type: 'currency' },
     { name: 'moneyness_distance', width: 150, type: 'percentage' },
+    { name: 'prob_itm_at_expiration', width: 200, type: 'percentage' },
     { name: 'expiration_date', width: 125, type: 'date' },
     { name: 'days_to_expiration', width: 200, type: 'number' },
 
@@ -13,7 +14,6 @@ export const COLUMNS =[
     { name: 'daily_secured_ror', width: 150, type: 'percentage' },
     { name: 'daily_naked_ror', width: 150, type: 'percentage' },
 
-    { name: 'prob_itm_at_expiration', width: 200, type: 'percentage' },
     { name: 'bid_price', width: 100, type: 'currency' },
     { name: 'mark_price', width: 100, type: 'currency' },
     { name: 'ask_price', width: 100, type: 'currency' },
