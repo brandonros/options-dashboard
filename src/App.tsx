@@ -36,6 +36,7 @@ const AppContent = () => {
     }, [rows]);
 
     const handleUpdateClick = async () => {
+        const start = performance.now();
         setIsUpdating(true);
         try {
             await dataService.updateTableData(SYMBOLS);
@@ -43,6 +44,8 @@ const AppContent = () => {
         } catch (err) {
             console.error('Failed to update table data:', err);
         } finally {
+            const elapsed = performance.now() - start;
+            console.log(`Update completed in ${elapsed.toFixed(2)}ms`);
             setIsUpdating(false);
         }
     };
