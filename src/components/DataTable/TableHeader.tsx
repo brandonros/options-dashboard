@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { useTableContext } from '../../providers/TableProvider';
-import { getSortIndicator } from '../../utils/tableUtils';
+import { calculateColumnWidth, getSortIndicator } from '../../utils/tableUtils';
 
 const STYLES = {
     container: {
@@ -49,26 +49,26 @@ export const TableHeader = forwardRef<HTMLDivElement, TableHeaderProps>(({
     return (
         <div ref={ref} style={STYLES.container}>
             <div style={STYLES.row}>
-                {columns.map(({ name, type }) => (
+                {columns.map((column) => (
                     <div
-                        key={`header-${name}`}
-                        style={{ ...STYLES.headerCell, flexBasis: name.length * 10 }}
-                        onClick={() => onSortChange(name, type)}
+                        key={`header-${column.name}`}
+                        style={{ ...STYLES.headerCell, flexBasis: calculateColumnWidth(column) }}
+                        onClick={() => onSortChange(column.name, column.type)}
                     >
-                        {name} {getSortIndicator(sorts, name)}
+                        {column.name} {getSortIndicator(sorts, column.name)}
                     </div>
                 ))}
             </div>
             <div style={STYLES.row}>
-                {columns.map(({ name }) => (
+                {columns.map((column) => (
                     <div 
-                        key={`filter-${name}`} 
-                        style={{ ...STYLES.filterCell, flexBasis: name.length * 10 }}
+                        key={`filter-${column.name}`} 
+                        style={{ ...STYLES.filterCell, flexBasis: calculateColumnWidth(column) }}
                     >
                         <input
                             type="text"
-                            value={filters[name] || ''}
-                            onChange={(e) => onFilterChange(name, e.target.value)}
+                            value={filters[column.name] || ''}
+                            onChange={(e) => onFilterChange(column.name, e.target.value)}
                             style={STYLES.filterInput}
                         />
                     </div>

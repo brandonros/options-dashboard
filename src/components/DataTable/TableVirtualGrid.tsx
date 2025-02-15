@@ -3,6 +3,7 @@ import { VariableSizeGrid } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { TableVirtualGridProps } from '../../types';
 import { TableCell } from './TableCell';
+import { calculateColumnWidth } from '../../utils/tableUtils';
 
 export const TableVirtualGrid = forwardRef<VariableSizeGrid, TableVirtualGridProps>(({
     columns,
@@ -14,7 +15,7 @@ export const TableVirtualGrid = forwardRef<VariableSizeGrid, TableVirtualGridPro
 }, ref) => {
     const getColumnWidth = (index: number) => {
         const column = columns[index];
-        return column.name.length * 10;
+        return calculateColumnWidth(column);
     };
     const getRowHeight = () => 20; // Could be made configurable
 
