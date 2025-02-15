@@ -24,6 +24,7 @@ const STYLES = {
     },
     filterInput: {
         boxSizing: 'border-box' as const,
+        border: '1px solid black',
         padding: '4px 6px',
         margin: 0,
         width: '100%',
