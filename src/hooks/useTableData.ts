@@ -1,11 +1,12 @@
 import { useEffect, useCallback } from 'react';
 import { dataService } from '../services/dataService';
 import { Rows } from '../types';
+import { SYMBOLS } from '../constants/symbols';
 
 export const useTableData = (setRows: (rows: Rows) => void) => {
     const loadData = useCallback(async () => {
         try {
-            const rows = await dataService.fetchTableData();
+            const rows = await dataService.fetchTableData(SYMBOLS);
             setRows(rows);
         } catch (error) {
             console.error('Failed to fetch table data:', error);

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { DataTable } from "./components/DataTable";
-import { Filters, Sorts, Rows, Row } from './types';
+import { Row } from './types';
 import { COLUMNS } from './constants/tableConfig';
 import { useTableData } from './hooks/useTableData';
 import { dataService } from './services/dataService';
 import { exportCsv, exportJson } from './utils/export';
 import { TableProvider, useTableContext } from './providers/TableProvider';
+import { SYMBOLS } from './constants/symbols';
 
 const AppContent = () => {
     const [isRefreshing, setIsRefreshing] = useState(false);
@@ -29,8 +30,7 @@ const AppContent = () => {
     const handleRefreshClick = async () => {
         setIsRefreshing(true);
         try {
-            await dataService.purgeTableData();
-            await dataService.refreshTableData();
+            await dataService.refreshTableData(SYMBOLS);
             await refreshData();
         } catch (err) {
             console.error('Failed to refresh table data:', err);
