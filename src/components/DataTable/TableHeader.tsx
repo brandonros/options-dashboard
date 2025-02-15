@@ -31,6 +31,9 @@ const STYLES = {
         borderRadius: '0',
         WebkitBorderRadius: '0',
         MozBorderRadius: '0',
+    },
+    filterInputNotFirst: {
+        borderLeft: 'none',
     }
 };
 
@@ -61,7 +64,7 @@ export const TableHeader = forwardRef<HTMLDivElement, TableHeaderProps>(({
                 ))}
             </div>
             <div style={STYLES.row}>
-                {columns.map((column) => (
+                {columns.map((column, index) => (
                     <div 
                         key={`filter-${column.name}`} 
                         style={{ ...STYLES.filterCell, flexBasis: calculateColumnWidth(column) }}
@@ -70,7 +73,10 @@ export const TableHeader = forwardRef<HTMLDivElement, TableHeaderProps>(({
                             type="text"
                             value={filters[column.name] || ''}
                             onChange={(e) => onFilterChange(column.name, e.target.value)}
-                            style={STYLES.filterInput}
+                            style={{
+                                ...STYLES.filterInput,
+                                ...(index > 0 ? STYLES.filterInputNotFirst : {})
+                            }}
                         />
                     </div>
                 ))}
