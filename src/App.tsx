@@ -68,7 +68,7 @@ const AppContent = () => {
                         timeStyle: 'short'
                     }).format(new Date(oldestRow.scraped_at))}</span>
                 )}
-                <input 
+                <input style={STYLES.button}
                     type="button" 
                     onClick={handleUpdateClick} 
                     value={isUpdating ? "updating..." : "update"}
