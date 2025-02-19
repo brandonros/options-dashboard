@@ -45,5 +45,5 @@ export const COLUMNS =[
 
     { name: 'premium_iv_ratio', type: 'percentage' },
     { name: 'theta_efficiency', type: 'percentage' },
-    { name: 'expected_move', type: 'percentage' },
+    { name: 'expected_move_percent', type: 'percentage' },
 ]
