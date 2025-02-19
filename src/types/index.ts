@@ -44,8 +44,6 @@ export interface Row {
     daily_secured_ror_per_expected_move: string
     daily_secured_ror_per_delta: string
     naked_ror: string
-    daily_naked_ror: string
-    daily_naked_ror_per_iv: string
     moneyness_distance: string
     days_to_expiration: string
     prob_itm_at_expiration: string

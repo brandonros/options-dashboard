@@ -13,10 +13,9 @@ export const COLUMNS =[
     { name: 'daily_secured_ror_per_expected_move', type: 'percentage' },
     { name: 'daily_secured_ror_per_delta', type: 'percentage' },
     { name: 'daily_secured_ror', type: 'percentage' },
+
     { name: 'secured_ror', type: 'percentage' },
 
-    { name: 'daily_naked_ror_per_iv', type: 'percentage' },
-    { name: 'daily_naked_ror', type: 'percentage' },
     { name: 'naked_ror', type: 'percentage' },
 
     { name: 'bid_price', type: 'currency' },
