@@ -3,7 +3,7 @@ import { Row, Rows } from "../types";
 import { parseCsv } from "../utils/csvParser";
 
 export const dataService = {
-    async updateTableData(symbols: string[]): Promise<void> {
+    async updateTableData(): Promise<void> {
         const response = await fetch('/api/rpc', {
             method: 'POST',
             headers: {
@@ -13,7 +13,6 @@ export const dataService = {
                 jsonrpc: '2.0',
                 method: 'scrape',
                 params: {
-                    symbols,
                     distanceDays: 60,
                     moneynessDistance: 0.25
                 },
@@ -27,7 +26,7 @@ export const dataService = {
         console.log(data);
     },
 
-    async fetchTableData(symbols: string[]): Promise<Rows> {
+    async fetchTableData(): Promise<Rows> {
         const response = await fetch('/api/rpc', {
             method: 'POST',
             headers: {
@@ -36,9 +35,7 @@ export const dataService = {
             body: JSON.stringify({
                 jsonrpc: '2.0',
                 method: 'dump',
-                params: {
-                    symbols
-                },
+                params: {},
                 id: uuidv4()
             })
         });

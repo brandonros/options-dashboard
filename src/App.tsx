@@ -6,7 +6,6 @@ import { useTableData } from './hooks/useTableData';
 import { dataService } from './services/dataService';
 import { exportCsv, exportJson } from './utils/export';
 import { TableProvider, useTableContext } from './providers/TableProvider';
-import { SYMBOLS } from './constants/symbols';
 
 const AppContent = () => {
     const [isUpdating, setIsUpdating] = useState(false);
@@ -39,7 +38,7 @@ const AppContent = () => {
         const start = performance.now();
         setIsUpdating(true);
         try {
-            await dataService.updateTableData(SYMBOLS);
+            await dataService.updateTableData();
             await loadData();
         } catch (err) {
             console.error('Failed to update table data:', err);
