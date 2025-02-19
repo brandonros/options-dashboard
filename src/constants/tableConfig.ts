@@ -9,11 +9,13 @@ export const COLUMNS =[
     { name: 'expiration_date', type: 'date' },
     { name: 'days_to_expiration', type: 'number' },
 
-    { name: 'daily_secured_ror_iv_ratio', type: 'percentage' },
+    { name: 'daily_secured_ror_per_iv', type: 'percentage' },
+    { name: 'daily_secured_ror_per_expected_move', type: 'percentage' },
+    { name: 'daily_secured_ror_per_delta', type: 'percentage' },
     { name: 'daily_secured_ror', type: 'percentage' },
     { name: 'secured_ror', type: 'percentage' },
 
-    { name: 'daily_naked_ror_iv_ratio', type: 'percentage' },
+    { name: 'daily_naked_ror_per_iv', type: 'percentage' },
     { name: 'daily_naked_ror', type: 'percentage' },
     { name: 'naked_ror', type: 'percentage' },
 

@@ -93,7 +93,7 @@ export default () => {
     return (
         <TableProvider
             initialSorts={[{
-                key: 'daily_secured_ror_iv_ratio',
+                key: 'daily_secured_ror_per_iv',
                 type: 'percentage',
                 direction: 'desc'
             }]}
