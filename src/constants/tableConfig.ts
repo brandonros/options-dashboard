@@ -11,6 +11,7 @@ export const COLUMNS =[
 
     { name: 'simple_roi', type: 'percentage' },
     { name: 'daily_simple_roi', type: 'percentage' },
+    { name: 'annualized_simple_roi', type: 'percentage' },
 
     { name: 'daily_secured_ror_per_iv', type: 'percentage' },
     { name: 'daily_secured_ror_per_expected_move', type: 'percentage' },
