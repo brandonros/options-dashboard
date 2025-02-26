@@ -9,6 +9,7 @@ export const COLUMNS =[
     { name: 'expiration_date', type: 'date' },
     { name: 'days_to_expiration', type: 'number' },
 
+    { name: 'simple_roi', type: 'percentage' },
     { name: 'daily_secured_ror_per_iv', type: 'percentage' },
     { name: 'daily_secured_ror_per_expected_move', type: 'percentage' },
     { name: 'daily_secured_ror_per_delta', type: 'percentage' },
