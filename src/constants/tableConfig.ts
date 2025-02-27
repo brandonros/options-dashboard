@@ -9,6 +9,8 @@ export const COLUMNS =[
     { name: 'expiration_date', type: 'date' },
     { name: 'days_to_expiration', type: 'number' },
 
+    { name: 'mark_price', type: 'currency' },
+
     { name: 'simple_roi', type: 'percentage' },
     { name: 'daily_simple_roi', type: 'percentage' },
     { name: 'annualized_simple_roi', type: 'percentage' },
@@ -23,7 +25,6 @@ export const COLUMNS =[
     { name: 'naked_ror', type: 'percentage' },
 
     { name: 'bid_price', type: 'currency' },
-    { name: 'mark_price', type: 'currency' },
     { name: 'ask_price', type: 'currency' },
 
     { name: 'implied_volatility', type: 'percentage' },
