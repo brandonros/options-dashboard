@@ -3,13 +3,14 @@ export const COLUMNS =[
 
     { name: 'symbol', type: 'string' },
     { name: 'underlying_last_trade_price', type: 'currency' },
+
     { name: 'strike_price', type: 'currency' },
+    { name: 'mark_price', type: 'currency' },
     { name: 'moneyness_distance', type: 'percentage' },
+
     { name: 'prob_itm_at_expiration', type: 'percentage' },
     { name: 'expiration_date', type: 'date' },
     { name: 'days_to_expiration', type: 'number' },
-
-    { name: 'mark_price', type: 'currency' },
 
     { name: 'simple_roi', type: 'percentage' },
     { name: 'daily_simple_roi', type: 'percentage' },
