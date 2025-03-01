@@ -10,7 +10,8 @@ export const COLUMNS =[
 
     { name: 'prob_itm_at_expiration', type: 'percentage' },
     { name: 'expiration_date', type: 'date' },
-    { name: 'days_to_expiration', type: 'number' },
+    // { name: 'days_to_expiration', type: 'number' },
+    { name: 'capital_commitment_period', type: 'number' },
 
     { name: 'simple_roi', type: 'percentage' },
     { name: 'daily_simple_roi', type: 'percentage' },
