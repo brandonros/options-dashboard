@@ -13,7 +13,7 @@ export const dataService = {
                 jsonrpc: '2.0',
                 method: 'scrape',
                 params: {
-                    distanceDays: 60,
+                    distanceDays: 30,
                     moneynessDistance: 0.25
                 },
                 id: uuidv4()
