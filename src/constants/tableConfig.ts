@@ -28,6 +28,7 @@ export const COLUMNS =[
 
     { name: 'bid_price', type: 'currency' },
     { name: 'ask_price', type: 'currency' },
+    { name: 'last_trade_price', type: 'currency' },
 
     { name: 'implied_volatility', type: 'percentage' },
     { name: 'delta', type: 'number' },
