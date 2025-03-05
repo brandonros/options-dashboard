@@ -140,6 +140,7 @@ const AppContent = () => {
                         auto refresh: 
                         <input 
                             type="checkbox" 
+                            checked={autoRefresh}
                             onChange={(e) => setAutoRefresh(e.target.checked)} 
                             style={{ marginLeft: '4px' }}
                         />
