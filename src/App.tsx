@@ -36,6 +36,21 @@ const AppContent = () => {
         }
     };
 
+    const handleUpdateClick = async () => {
+        const start = performance.now();
+        setIsLoading(true);
+        try {
+            await dataService.updateTableData(extended);
+            await loadData();
+        } catch (err) {
+            console.error('Failed to update table data:', err);
+        } finally {
+            const elapsed = performance.now() - start;
+            console.log(`Update completed in ${elapsed.toFixed(2)}ms`);
+            setIsLoading(false);
+        }
+    };
+
     useEffect(() => {
         if (rows.length > 0) {
             const oldest = rows.reduce((oldest, current) => {
@@ -78,21 +93,6 @@ const AppContent = () => {
             }
         };
     }, [autoRefresh]);
-
-    const handleUpdateClick = async () => {
-        const start = performance.now();
-        setIsLoading(true);
-        try {
-            await dataService.updateTableData(extended);
-            await loadData();
-        } catch (err) {
-            console.error('Failed to update table data:', err);
-        } finally {
-            const elapsed = performance.now() - start;
-            console.log(`Update completed in ${elapsed.toFixed(2)}ms`);
-            setIsLoading(false);
-        }
-    };
 
     return (
         <div style={{ 
