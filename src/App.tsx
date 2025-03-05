@@ -68,7 +68,7 @@ const AppContent = () => {
                 } else {
                     console.log('skipping update because loading');
                 }
-            }, 60000); // Refresh every 60 seconds
+            }, 30000);
         }
 
         return () => {
