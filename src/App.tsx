@@ -132,6 +132,10 @@ const AppContent = () => {
                             style={{ marginLeft: '4px' }}
                         />
                     </label>
+                </div>
+
+                 {/* auto refresh interval row */}
+                 <div style={STYLES.row}>
                     <label>
                         auto refresh: 
                         <input 
