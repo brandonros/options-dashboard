@@ -9,6 +9,7 @@ import { TableProvider, useTableContext } from './providers/TableProvider';
 
 const AppContent = () => {
     const [isLoading, setIsLoading] = useState(false);
+    const [extended, setExtended] = useState(false);
     const [oldestRow, setOldestRow] = useState<Row | null>(null);    
     const { processedRows, setRows, rows } = useTableContext();
     const { loadData } = useTableData(setRows, setIsLoading);
@@ -38,7 +39,7 @@ const AppContent = () => {
         const start = performance.now();
         setIsLoading(true);
         try {
-            await dataService.updateTableData();
+            await dataService.updateTableData(extended);
             await loadData();
         } catch (err) {
             console.error('Failed to update table data:', err);
@@ -77,6 +78,8 @@ const AppContent = () => {
                     value="update"
                     disabled={isLoading}
                 />
+                <label>extended: </label>
+                <input type="checkbox" onChange={(e) => setExtended(e.target.checked)} />
                 <input style={STYLES.button} type="button" onClick={() => exportCsv(processedRows)} value="export csv" />
                 <input style={STYLES.button} type="button" onClick={() => exportJson(processedRows)} value="export json" />
             </div>

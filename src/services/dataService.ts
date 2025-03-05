@@ -3,7 +3,7 @@ import { Row, Rows } from "../types";
 import { parseCsv } from "../utils/csvParser";
 
 export const dataService = {
-    async updateTableData(): Promise<void> {
+    async updateTableData(extended: boolean): Promise<void> {
         const response = await fetch('/api/rpc', {
             method: 'POST',
             headers: {
@@ -14,7 +14,8 @@ export const dataService = {
                 method: 'scrape',
                 params: {
                     distanceDays: 15,
-                    moneynessDistance: 0.25
+                    moneynessDistance: 0.25,
+                    extended
                 },
                 id: uuidv4()
             })
