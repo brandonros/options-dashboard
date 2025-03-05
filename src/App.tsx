@@ -25,6 +25,7 @@ const AppContent = () => {
             flexDirection: 'column' as const,
             gap: '8px',
             padding: '12px 8px',
+            alignItems: 'flex-end' as const, // Align all rows to the right
         },
         row: {
             display: 'flex',
@@ -71,7 +72,7 @@ const AppContent = () => {
         }}>
             <div style={STYLES.controlContainer}>
                 {/* Status and timestamp row */}
-                <div style={{ ...STYLES.row, justifyContent: 'flex-end' }}>
+                <div style={STYLES.row}>
                     {isLoading && <span>loading...</span>}
                     {oldestRow && (
                         <span>Last updated: {new Intl.DateTimeFormat('en-US', {
