@@ -10,7 +10,7 @@ import { TableProvider, useTableContext } from './providers/TableProvider';
 const AppContent = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [extended, setExtended] = useState(false);
-    const [autoRefresh, setAutoRefresh] = useState(false);
+    const [autoRefresh, setAutoRefresh] = useState(true);
     const [oldestRow, setOldestRow] = useState<Row | null>(null);    
     const { processedRows, setRows, rows } = useTableContext();
     const { loadData } = useTableData(setRows, setIsLoading);
