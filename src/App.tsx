@@ -72,6 +72,7 @@ const AppContent = () => {
                         timeStyle: 'short'
                     }).format(new Date(oldestRow.scraped_at))}</span>
                 )}
+                <br />
                 <input style={STYLES.button}
                     type="button" 
                     onClick={handleUpdateClick} 
@@ -80,6 +81,7 @@ const AppContent = () => {
                 />
                 <label>extended: </label>
                 <input type="checkbox" onChange={(e) => setExtended(e.target.checked)} />
+                <br />
                 <input style={STYLES.button} type="button" onClick={() => exportCsv(processedRows)} value="export csv" />
                 <input style={STYLES.button} type="button" onClick={() => exportJson(processedRows)} value="export json" />
             </div>
