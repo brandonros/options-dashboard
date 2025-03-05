@@ -19,6 +19,17 @@ const AppContent = () => {
             borderRadius: '0',
             WebkitBorderRadius: '0',
             MozBorderRadius: '0',
+        },
+        controlContainer: {
+            display: 'flex',
+            flexDirection: 'column' as const,
+            gap: '8px',
+            padding: '12px 8px',
+        },
+        row: {
+            display: 'flex',
+            alignItems: 'center' as const,
+            gap: '8px',
         }
     };
 
@@ -58,32 +69,53 @@ const AppContent = () => {
             overflow: 'hidden',
             fontFamily: 'monospace'
         }}>
-            <div style={{ 
-                display: 'flex', 
-                justifyContent: 'flex-end', 
-                gap: '8px', 
-                padding: '12px 0' 
-            }}>
-                {isLoading && <span>loading...</span>}
-                {oldestRow && (
-                    <span>Last updated: {new Intl.DateTimeFormat('en-US', {
-                        timeZone: 'America/New_York',
-                        dateStyle: 'medium',
-                        timeStyle: 'short'
-                    }).format(new Date(oldestRow.scraped_at))}</span>
-                )}
-                <br />
-                <input style={STYLES.button}
-                    type="button" 
-                    onClick={handleUpdateClick} 
-                    value="update"
-                    disabled={isLoading}
-                />
-                <label>extended: </label>
-                <input type="checkbox" onChange={(e) => setExtended(e.target.checked)} />
-                <br />
-                <input style={STYLES.button} type="button" onClick={() => exportCsv(processedRows)} value="export csv" />
-                <input style={STYLES.button} type="button" onClick={() => exportJson(processedRows)} value="export json" />
+            <div style={STYLES.controlContainer}>
+                {/* Status and timestamp row */}
+                <div style={{ ...STYLES.row, justifyContent: 'flex-end' }}>
+                    {isLoading && <span>loading...</span>}
+                    {oldestRow && (
+                        <span>Last updated: {new Intl.DateTimeFormat('en-US', {
+                            timeZone: 'America/New_York',
+                            dateStyle: 'medium',
+                            timeStyle: 'short'
+                        }).format(new Date(oldestRow.scraped_at))}</span>
+                    )}
+                </div>
+                
+                {/* Update and extended checkbox row */}
+                <div style={STYLES.row}>
+                    <input 
+                        style={STYLES.button}
+                        type="button" 
+                        onClick={handleUpdateClick} 
+                        value="update"
+                        disabled={isLoading}
+                    />
+                    <label>
+                        extended: 
+                        <input 
+                            type="checkbox" 
+                            onChange={(e) => setExtended(e.target.checked)} 
+                            style={{ marginLeft: '4px' }}
+                        />
+                    </label>
+                </div>
+                
+                {/* Export buttons row */}
+                <div style={STYLES.row}>
+                    <input 
+                        style={STYLES.button} 
+                        type="button" 
+                        onClick={() => exportCsv(processedRows)} 
+                        value="export csv" 
+                    />
+                    <input 
+                        style={STYLES.button} 
+                        type="button" 
+                        onClick={() => exportJson(processedRows)} 
+                        value="export json" 
+                    />
+                </div>
             </div>
 
             <div style={{ flex: 1, minHeight: 0, paddingBottom: '20px' }}>
