@@ -8,10 +8,10 @@ import { exportCsv, exportJson } from './utils/export';
 import { TableProvider, useTableContext } from './providers/TableProvider';
 
 const AppContent = () => {
-    const [isUpdating, setIsUpdating] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [oldestRow, setOldestRow] = useState<Row | null>(null);    
     const { processedRows, setRows, rows } = useTableContext();
-    const { loadData } = useTableData(setRows);
+    const { loadData } = useTableData(setRows, setIsLoading);
 
     const STYLES = {
         button: {
@@ -36,7 +36,7 @@ const AppContent = () => {
 
     const handleUpdateClick = async () => {
         const start = performance.now();
-        setIsUpdating(true);
+        setIsLoading(true);
         try {
             await dataService.updateTableData();
             await loadData();
@@ -45,7 +45,7 @@ const AppContent = () => {
         } finally {
             const elapsed = performance.now() - start;
             console.log(`Update completed in ${elapsed.toFixed(2)}ms`);
-            setIsUpdating(false);
+            setIsLoading(false);
         }
     };
 
@@ -63,6 +63,7 @@ const AppContent = () => {
                 gap: '8px', 
                 padding: '12px 0' 
             }}>
+                {isLoading && <span>loading...</span>}
                 {oldestRow && (
                     <span>Last updated: {new Intl.DateTimeFormat('en-US', {
                         timeZone: 'America/New_York',
@@ -73,8 +74,8 @@ const AppContent = () => {
                 <input style={STYLES.button}
                     type="button" 
                     onClick={handleUpdateClick} 
-                    value={isUpdating ? "updating..." : "update"}
-                    disabled={isUpdating}
+                    value="update"
+                    disabled={isLoading}
                 />
                 <input style={STYLES.button} type="button" onClick={() => exportCsv(processedRows)} value="export csv" />
                 <input style={STYLES.button} type="button" onClick={() => exportJson(processedRows)} value="export json" />
