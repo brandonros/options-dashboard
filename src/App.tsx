@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { DataTable } from "./components/DataTable";
 import { Row } from './types';
 import { COLUMNS } from './constants/tableConfig';
@@ -10,9 +10,11 @@ import { TableProvider, useTableContext } from './providers/TableProvider';
 const AppContent = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [extended, setExtended] = useState(false);
+    const [autoRefresh, setAutoRefresh] = useState(false);
     const [oldestRow, setOldestRow] = useState<Row | null>(null);    
     const { processedRows, setRows, rows } = useTableContext();
     const { loadData } = useTableData(setRows, setIsLoading);
+    const intervalRef = useRef<number | null>(null);
 
     const STYLES = {
         button: {
@@ -46,6 +48,36 @@ const AppContent = () => {
             setOldestRow(null);
         }
     }, [rows]);
+
+    useEffect(() => {
+        // autorefresh off but interval exists, clear it
+        if (!autoRefresh && intervalRef.current) {
+            window.clearInterval(intervalRef.current);
+            intervalRef.current = null;
+        }
+
+        // autorefresh on and interval doesn't exist, create it
+        if (autoRefresh && !intervalRef.current) {
+            intervalRef.current = window.setInterval(async () => {
+                if (!isLoading) {
+                    try {
+                        await handleUpdateClick();
+                    } catch (err) {
+                        console.error('Failed to update table data:', err);
+                    }
+                } else {
+                    console.log('skipping update because loading');
+                }
+            }, 60000); // Refresh every 60 seconds
+        }
+
+        return () => {
+            if (intervalRef.current) {
+                window.clearInterval(intervalRef.current);
+                intervalRef.current = null;
+            }
+        };
+    }, [autoRefresh]);
 
     const handleUpdateClick = async () => {
         const start = performance.now();
@@ -97,6 +129,14 @@ const AppContent = () => {
                         <input 
                             type="checkbox" 
                             onChange={(e) => setExtended(e.target.checked)} 
+                            style={{ marginLeft: '4px' }}
+                        />
+                    </label>
+                    <label>
+                        auto refresh: 
+                        <input 
+                            type="checkbox" 
+                            onChange={(e) => setAutoRefresh(e.target.checked)} 
                             style={{ marginLeft: '4px' }}
                         />
                     </label>
