@@ -56,7 +56,9 @@ export const TableCell = ({
     };
 
     const getAnnotation = (columnName: string, columnType: string, value: any) => {
-        // TODO: Add annotation logic here ✅
+        if (columnName === 'prob_itm_at_expiration') {
+            return value > 10 ? '❌' : '✅';
+        }
         return '';
     };
 
