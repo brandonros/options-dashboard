@@ -32,6 +32,8 @@ export const COLUMNS =[
     { name: 'bid_price', type: 'currency' },
     { name: 'ask_price', type: 'currency' },
     { name: 'last_trade_price', type: 'currency' },
+    { name: 'bid_ask_spread', type: 'currency' },
+    { name: 'slippage_impact', type: 'percentage' },
 
     { name: 'delta', type: 'number' },
     { name: 'gamma', type: 'number' },
@@ -42,9 +44,6 @@ export const COLUMNS =[
     { name: 'volume', type: 'number' },
     { name: 'open_interest', type: 'number' },
     { name: 'volume_open_interest_ratio', type: 'percentage' },
-
-    { name: 'bid_ask_spread', type: 'currency' },
-    { name: 'slippage_impact', type: 'percentage' },
 
     { name: 'intrinsic_value', type: 'currency' },
     { name: 'extrinsic_value', type: 'currency' },

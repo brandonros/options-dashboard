@@ -57,7 +57,13 @@ export const TableCell = ({
 
     const getAnnotation = (columnName: string, columnType: string, value: any) => {
         if (columnName === 'prob_itm_at_expiration') {
-            return value > 10 ? '❌' : '✅';
+            return Number(value) > 10 ? '❌' : '✅';
+        }
+        if (columnName === 'daily_simple_roi') {
+            return Number(value) > 0.1 ? '❌' : '✅';
+        }
+        if (columnName === 'slippage_impact') {
+            return Number(value) > 0.01 ? '❌' : '✅';
         }
         return '';
     };
