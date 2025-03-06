@@ -39,7 +39,7 @@ export const applySorts = (rows: Rows, sorts: Sorts) => {
     });
 
     // Add assertion for numeric sorts
-    if (sorts.length > 0) {
+    if (sorts.length > 0 && result.length > 0) {
         const firstSort = sorts[0];
         if (firstSort.type === 'number' || firstSort.type === 'percentage' || firstSort.type === 'currency') {
             const key = firstSort.key as keyof typeof result[0];
