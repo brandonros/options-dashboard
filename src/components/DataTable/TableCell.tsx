@@ -1,9 +1,11 @@
 import React from 'react';
 import { TableCellProps, Row } from '../../types';
 
-const getBackgroundColor = (row: Row, hoverIndex: number, rowIndex: number) => {
+const getBackgroundColor = (row: Row, rowIndex: number, hoverRowIndex: number) => {
     // Return hover color if row is being hovered
-    if (rowIndex === hoverIndex) return '#ffeb3b';
+    if (rowIndex === hoverRowIndex) {
+        return '#ffeb3b';
+    }
 
     // ITM Call (strike below market) - cool blue
     if (row.instrument_type === 'call' && row.strike_price < row.underlying_last_trade_price) {
