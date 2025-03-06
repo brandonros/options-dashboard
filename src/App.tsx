@@ -40,9 +40,16 @@ const AppContent = () => {
     }, []);
 
     const loadData = async () => {
-        const filtered = risky ? false : true;
-        const rows = await dataService.fetchTableData(filtered);
-        setRows(rows);
+        setIsLoading(true);
+        try {
+            const filtered = risky ? false : true;
+            const rows = await dataService.fetchTableData(filtered);
+            setRows(rows);
+        } catch (err) {
+            console.error('Failed to load table data:', err);
+        } finally {
+            setIsLoading(false);
+        }
     }
 
     const handleUpdateClick = async () => {
