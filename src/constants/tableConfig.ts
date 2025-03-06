@@ -9,7 +9,6 @@ export const COLUMNS =[
     { name: 'moneyness_distance', type: 'percentage' },
 
     { name: 'prob_itm_at_expiration', type: 'percentage' },
-    { name: 'volatility_prob_itm_ratio', type: 'percentage' },
     { name: 'expiration_date', type: 'date' },
     // { name: 'days_to_expiration', type: 'number' },
     { name: 'capital_commitment_period', type: 'number' },
@@ -17,7 +16,9 @@ export const COLUMNS =[
     { name: 'simple_roi', type: 'percentage' },
     { name: 'daily_simple_roi', type: 'percentage' },
     { name: 'annualized_simple_roi', type: 'percentage' },
+
     { name: 'risk_adjusted_daily_simple_roi', type: 'percentage' },
+    { name: 'volatility_prob_itm_ratio', type: 'percentage' },
 
     // { name: 'daily_secured_ror_per_iv', type: 'percentage' },
     // { name: 'daily_secured_ror_per_expected_move', type: 'percentage' },
