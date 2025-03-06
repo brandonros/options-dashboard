@@ -23,18 +23,24 @@ export const applyFilters = (rows: Rows, filters: Filters) => {
 };
 
 export const applySorts = (rows: Rows, sorts: Sorts) => {
+    console.log({
+        rows,
+        sorts
+    })
     return [...rows].sort((a, b) => {
-        return sorts.reduce((acc, sort) => {
+        // Loop through each sort criteria
+        for (const sort of sorts) {
             const multiplier = sort.direction === 'asc' ? 1 : -1;
             const isNumeric = sort.type === 'number' || sort.type === 'percentage' || sort.type === 'currency';
             const aValue = isNumeric ? Number(a[sort.key as keyof typeof a]) : a[sort.key as keyof typeof a];
             const bValue = isNumeric ? Number(b[sort.key as keyof typeof b]) : b[sort.key as keyof typeof b];
-            if (aValue < bValue) {
-                return -1 * multiplier;
-            } else if (aValue > bValue) {
-                return 1 * multiplier;
-            }
-            return 0;
-        }, 0);
+            
+            // If values are different, return the comparison result
+            if (aValue < bValue) return -1 * multiplier;
+            if (aValue > bValue) return 1 * multiplier;
+            // If values are equal, continue to next sort criteria
+        }
+        // If all sort criteria result in equality, return 0
+        return 0;
     });
 }; 
