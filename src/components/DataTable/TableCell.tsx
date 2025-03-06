@@ -54,7 +54,8 @@ export const TableCell = ({
     };
 
     const getAnnotation = (columnName: string, columnType: string, value: any) => {
-        return '✅';
+        // TODO: Add annotation logic here ✅
+        return '';
     };
 
     const formatCellValue = (columnName: string, columnType: string, value: any) => {
