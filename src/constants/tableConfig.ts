@@ -15,7 +15,6 @@ export const COLUMNS =[
 
     { name: 'simple_roi', type: 'percentage' },
     { name: 'daily_simple_roi', type: 'percentage' },
-    { name: 'daily_simple_roi_prob_itm_at_expiration_ratio', type: 'percentage' },
     { name: 'annualized_simple_roi', type: 'percentage' },
 
     { name: 'daily_secured_ror_per_iv', type: 'percentage' },
@@ -56,4 +55,6 @@ export const COLUMNS =[
     { name: 'premium_iv_ratio', type: 'percentage' },
     { name: 'theta_efficiency', type: 'percentage' },
     { name: 'expected_move_percent', type: 'percentage' },
+
+    { name: 'daily_simple_roi_prob_itm_at_expiration_ratio', type: 'percentage' },
 ]
