@@ -35,8 +35,10 @@ export const dataService = {
             },
             body: JSON.stringify({
                 jsonrpc: '2.0',
-                method: filtered ? 'dumpFiltered' : 'dump',
-                params: {},
+                method: 'dump',
+                params: {
+                    filtered
+                },
                 id: uuidv4()
             })
         });
