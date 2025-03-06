@@ -60,7 +60,7 @@ export const TableCell = ({
             return Number(value) > 10 ? '❌' : '✅';
         }
         if (columnName === 'daily_simple_roi') {
-            return Number(value) > 0.1 ? '❌' : '✅';
+            return Number(value) < 0.1 ? '❌' : '✅';
         }
         if (columnName === 'slippage_impact') {
             return Number(value) > 0.01 ? '❌' : '✅';
