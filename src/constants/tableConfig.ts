@@ -18,6 +18,7 @@ export const COLUMNS =[
     { name: 'annualized_simple_roi', type: 'percentage' },
 
     { name: 'risk_adjusted_daily_simple_roi', type: 'percentage' },
+    { name: 'implied_volatility', type: 'percentage' },
     { name: 'volatility_prob_itm_ratio', type: 'percentage' },
 
     // { name: 'daily_secured_ror_per_iv', type: 'percentage' },
@@ -31,7 +32,6 @@ export const COLUMNS =[
     { name: 'ask_price', type: 'currency' },
     { name: 'last_trade_price', type: 'currency' },
 
-    { name: 'implied_volatility', type: 'percentage' },
     { name: 'delta', type: 'number' },
     { name: 'gamma', type: 'number' },
     { name: 'theta', type: 'number' },

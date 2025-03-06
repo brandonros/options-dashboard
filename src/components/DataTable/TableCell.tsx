@@ -7,22 +7,22 @@ const getBackgroundColor = (row: Row, hoverIndex: number, rowIndex: number) => {
 
     // ITM Call (strike below market) - cool blue
     if (row.instrument_type === 'call' && row.strike_price < row.underlying_last_trade_price) {
-        return 'rgba(0, 105, 255, 0.15)'; // Medium blue
+        return 'rgba(0, 105, 255, 0.15)';
     }
 
     // OTM Call (strike above market) - light green
     if (row.instrument_type === 'call' && row.strike_price > row.underlying_last_trade_price) {
-        return 'rgba(76, 175, 80, 0.15)'; // Material design green
+        return 'rgba(76, 175, 80, 0.15)';
     }
 
     // ITM Put (strike above market) - deep purple
     if (row.instrument_type === 'put' && row.strike_price > row.underlying_last_trade_price) {
-        return 'rgba(103, 58, 183, 0.15)'; // Material design deep purple
+        return 'rgba(103, 58, 183, 0.15)';
     }
 
     // OTM Put (strike below market) - amber/orange
     if (row.instrument_type === 'put' && row.strike_price < row.underlying_last_trade_price) {
-        return 'rgba(255, 152, 0, 0.15)'; // Material design amber
+        return 'rgba(255, 152, 0, 0.15)';
     }
 };
 
@@ -53,24 +53,29 @@ export const TableCell = ({
         display: 'flex',
     };
 
-    const formatCellValue = (value: any, type: string) => {
-        if (type === 'percentage') {
-            return `${value}%`;
+    const getAnnotation = (columnName: string, columnType: string, value: any) => {
+        return '✅';
+    };
+
+    const formatCellValue = (columnName: string, columnType: string, value: any) => {
+        const annotation = getAnnotation(columnName, columnType, value);
+        if (columnType === 'percentage') {
+            return `${value}% ${annotation}`;
         }
-        if (type === 'currency') {
-            return `$${value}`;
+        if (columnType === 'currency') {
+            return `$${value} ${annotation}`;
         }
-        if (type === 'date') {
-            return new Date(value).toISOString().split('T')[0];
+        if (columnType === 'date') {
+            return `${new Date(value).toISOString().split('T')[0]} ${annotation}`;
         }
-        if (type === 'datetime') {
-            return new Date(value).toISOString();
+        if (columnType === 'datetime') {
+            return `${new Date(value).toISOString()} ${annotation}`;
         }
-        return value;
+        return `${value} ${annotation}`;
     };
 
     const cellValue = row[columnName as keyof Row];
-    const cellValueFormatted = formatCellValue(cellValue, columnType);
+    const cellValueFormatted = formatCellValue(columnName, columnType, cellValue);
 
     return (
         <div 
