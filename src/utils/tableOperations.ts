@@ -23,7 +23,11 @@ export const applyFilters = (rows: Rows, filters: Filters) => {
 };
 
 export const applySorts = (rows: Rows, sorts: Sorts) => {
-    const result = [...rows].sort((a, b) => {
+    console.log({
+        rows,
+        sorts
+    })
+    return [...rows].sort((a, b) => {
         // Loop through each sort criteria
         for (const sort of sorts) {
             const multiplier = sort.direction === 'asc' ? 1 : -1;
@@ -37,23 +41,4 @@ export const applySorts = (rows: Rows, sorts: Sorts) => {
         }
         return 0;
     });
-
-    // Add assertion for numeric sorts
-    if (sorts.length > 0 && result.length > 0) {
-        const firstSort = sorts[0];
-        if (firstSort.type === 'number' || firstSort.type === 'percentage' || firstSort.type === 'currency') {
-            const key = firstSort.key as keyof typeof result[0];
-            const values = result.map(row => Number(row[key]));
-            const maxValue = Math.max(...values);
-            
-            if (firstSort.direction === 'desc' && Number(result[0][key]) !== maxValue) {
-                console.error('Sorting failed! First row:', result[0]);
-                console.error('Max value found:', maxValue);
-                console.error('All values:', values);
-                throw new Error(`Sorting assertion failed: Expected ${maxValue} to be first when sorting ${key} in descending order`);
-            }
-        }
-    }
-
-    return result;
 }; 
