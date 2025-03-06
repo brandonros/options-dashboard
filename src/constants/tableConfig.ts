@@ -16,15 +16,14 @@ export const COLUMNS =[
     { name: 'simple_roi', type: 'percentage' },
     { name: 'daily_simple_roi', type: 'percentage' },
     { name: 'annualized_simple_roi', type: 'percentage' },
+    { name: 'risk_adjusted_daily_simple_roi', type: 'percentage' },
 
-    { name: 'daily_secured_ror_per_iv', type: 'percentage' },
-    { name: 'daily_secured_ror_per_expected_move', type: 'percentage' },
-    { name: 'daily_secured_ror_per_delta', type: 'percentage' },
-    { name: 'daily_secured_ror', type: 'percentage' },
-
-    { name: 'secured_ror', type: 'percentage' },
-
-    { name: 'naked_ror', type: 'percentage' },
+    // { name: 'daily_secured_ror_per_iv', type: 'percentage' },
+    // { name: 'daily_secured_ror_per_expected_move', type: 'percentage' },
+    // { name: 'daily_secured_ror_per_delta', type: 'percentage' },
+    // { name: 'daily_secured_ror', type: 'percentage' },
+    // { name: 'secured_ror', type: 'percentage' },
+    // { name: 'naked_ror', type: 'percentage' },
 
     { name: 'bid_price', type: 'currency' },
     { name: 'ask_price', type: 'currency' },
@@ -55,6 +54,4 @@ export const COLUMNS =[
     { name: 'premium_iv_ratio', type: 'percentage' },
     { name: 'theta_efficiency', type: 'percentage' },
     { name: 'expected_move_percent', type: 'percentage' },
-
-    { name: 'daily_simple_roi_prob_itm_at_expiration_ratio', type: 'percentage' },
 ]
