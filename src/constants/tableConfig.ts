@@ -9,6 +9,7 @@ export const COLUMNS =[
     { name: 'moneyness_distance', type: 'percentage' },
 
     { name: 'prob_itm_at_expiration', type: 'percentage' },
+    { name: 'volatility_prob_itm_ratio', type: 'percentage' },
     { name: 'expiration_date', type: 'date' },
     // { name: 'days_to_expiration', type: 'number' },
     { name: 'capital_commitment_period', type: 'number' },
