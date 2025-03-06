@@ -7,6 +7,7 @@ export const COLUMNS =[
     { name: 'strike_price', type: 'currency' },
     { name: 'mark_price', type: 'currency' },
     { name: 'moneyness_distance', type: 'percentage' },
+    { name: 'moneyness', type: 'string' },
 
     { name: 'prob_itm_at_expiration', type: 'percentage' },
     { name: 'expiration_date', type: 'date' },

@@ -24,6 +24,8 @@ const getBackgroundColor = (row: Row, hoverIndex: number, rowIndex: number) => {
     if (row.instrument_type === 'put' && row.strike_price < row.underlying_last_trade_price) {
         return 'rgba(255, 152, 0, 0.15)';
     }
+
+    return 'transparent';
 };
 
 export const TableCell = ({

@@ -44,6 +44,7 @@ export interface Row {
     secured_ror: string
     naked_ror: string
     moneyness_distance: string
+    moneyness: string
     prob_itm_at_expiration: string
     days_to_expiration: string
     capital_commitment_period: string
