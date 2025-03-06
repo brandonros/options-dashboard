@@ -10,19 +10,22 @@ export const getSortIndicator = (sorts: Sorts, columnName: string) => {
 
 export const calculateColumnWidth = (column: Column) => {
     if (column.name === 'delta') {
-        return 75;
+        return 80;
     }
     if (column.name === 'gamma') {
-        return 75;
+        return 80;
     }
     if (column.name === 'theta') {
-        return 75;
+        return 80;
     }
     if (column.name === 'vega') {
-        return 75;
+        return 80;
     }
     if (column.name === 'rho') {
-        return 75;
+        return 80;
+    }
+    if (column.name === 'volume') {
+        return 80;
     }
     return column.name.length * 10;
 }
