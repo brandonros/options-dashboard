@@ -35,14 +35,22 @@ const AppContent = () => {
         }
     };
 
+    useEffect(() => {
+        loadData();
+    }, []);
+
+    const loadData = async () => {
+        const filtered = risky ? false : true;
+        const rows = await dataService.fetchTableData(filtered);
+        setRows(rows);
+    }
+
     const handleUpdateClick = async () => {
         const start = performance.now();
         setIsLoading(true);
         try {
             await dataService.updateTableData(extended);
-            const filtered = risky ? false : true;
-            const rows = await dataService.fetchTableData(filtered);
-            setRows(rows);
+            await loadData();
         } catch (err) {
             console.error('Failed to update table data:', err);
         } finally {
@@ -66,7 +74,7 @@ const AppContent = () => {
     }, [rows]);
 
     useEffect(() => {
-        handleUpdateClick();
+        loadData();
     }, [risky]);
 
     useEffect(() => {
