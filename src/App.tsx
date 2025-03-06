@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { DataTable } from "./components/DataTable";
 import { Row } from './types';
 import { COLUMNS } from './constants/tableConfig';
-import { useTableData } from './hooks/useTableData';
 import { dataService } from './services/dataService';
 import { exportCsv, exportJson } from './utils/export';
 import { TableProvider, useTableContext } from './providers/TableProvider';
@@ -10,10 +9,10 @@ import { TableProvider, useTableContext } from './providers/TableProvider';
 const AppContent = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [extended, setExtended] = useState(false);
+    const [risky, setRisky] = useState(false);
     const [autoRefresh, setAutoRefresh] = useState(false);
     const [oldestRow, setOldestRow] = useState<Row | null>(null);    
     const { processedRows, setRows, rows } = useTableContext();
-    const { loadData } = useTableData(setRows, setIsLoading);
     const intervalRef = useRef<number | null>(null);
 
     const STYLES = {
@@ -41,7 +40,9 @@ const AppContent = () => {
         setIsLoading(true);
         try {
             await dataService.updateTableData(extended);
-            await loadData();
+            const filtered = risky ? false : true;
+            const rows = await dataService.fetchTableData(filtered);
+            setRows(rows);
         } catch (err) {
             console.error('Failed to update table data:', err);
         } finally {
@@ -63,6 +64,10 @@ const AppContent = () => {
             setOldestRow(null);
         }
     }, [rows]);
+
+    useEffect(() => {
+        handleUpdateClick();
+    }, [risky]);
 
     useEffect(() => {
         // autorefresh off but interval exists, clear it
@@ -134,7 +139,7 @@ const AppContent = () => {
                     </label>
                 </div>
 
-                 {/* auto refresh interval row */}
+                {/* auto refresh + risky row */}
                  <div style={STYLES.row}>
                     <label>
                         auto refresh: 
@@ -142,6 +147,15 @@ const AppContent = () => {
                             type="checkbox" 
                             checked={autoRefresh}
                             onChange={(e) => setAutoRefresh(e.target.checked)} 
+                            style={{ marginLeft: '4px' }}
+                        />
+                    </label>
+                    <label>
+                        risky: 
+                        <input 
+                            type="checkbox" 
+                            checked={risky}
+                            onChange={(e) => setRisky(e.target.checked)} 
                             style={{ marginLeft: '4px' }}
                         />
                     </label>

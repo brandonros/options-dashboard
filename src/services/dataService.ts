@@ -27,7 +27,7 @@ export const dataService = {
         console.log(data);
     },
 
-    async fetchTableData(): Promise<Rows> {
+    async fetchTableData(filtered: boolean): Promise<Rows> {
         const response = await fetch('/api/rpc', {
             method: 'POST',
             headers: {
@@ -35,7 +35,7 @@ export const dataService = {
             },
             body: JSON.stringify({
                 jsonrpc: '2.0',
-                method: 'dump',
+                method: filtered ? 'dumpFiltered' : 'dump',
                 params: {},
                 id: uuidv4()
             })
