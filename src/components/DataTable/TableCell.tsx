@@ -19,7 +19,7 @@ const getBackgroundColor = (row: Row, rowIndex: number, hoverRowIndex: number) =
 
     // ITM Put (strike above market) - deep purple
     if (row.instrument_type === 'put' && row.strike_price > row.underlying_last_trade_price) {
-        if (row.symbol === 'AVGO') {
+        if (row.symbol === 'COST') {
             debugger
         }
         return 'rgba(103, 58, 183, 0.15)';
@@ -27,7 +27,7 @@ const getBackgroundColor = (row: Row, rowIndex: number, hoverRowIndex: number) =
 
     // OTM Put (strike below market) - amber/orange
     if (row.instrument_type === 'put' && row.strike_price < row.underlying_last_trade_price) {
-        if (row.symbol === 'COST') {
+        if (row.symbol === 'AVGO') {
             debugger
         }
         return 'rgba(255, 152, 0, 0.15)';
