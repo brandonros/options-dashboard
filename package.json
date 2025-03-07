@@ -1,7 +1,6 @@
 {
   "name": "options-dashboard",
   "version": "1.0.0",
-  "type": "module",
   "scripts": {
     "build": "tsc --noEmit && node build.js",
     "serve": "http-server -p 8080 -c-1 dist",
