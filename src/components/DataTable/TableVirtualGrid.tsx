@@ -19,33 +19,52 @@ export const TableVirtualGrid = forwardRef<VariableSizeGrid, TableVirtualGridPro
     };
     const getRowHeight = () => 20; // Could be made configurable
 
+    console.log('TableVirtualGrid render:', {
+        columnsLength: columns.length,
+        rowsLength: rows.length,
+    });
+
     return (
-        <AutoSizer>
-            {({ height, width }) => (
-                <VariableSizeGrid
-                    ref={ref}
-                    width={width}
-                    height={height}
-                    columnCount={columns.length}
-                    columnWidth={getColumnWidth}
-                    rowCount={rows.length}
-                    rowHeight={getRowHeight}
-                    onScroll={onScroll}
-                >
-                    {({ columnIndex, rowIndex, style }) => (
-                        <TableCell
-                            columnIndex={columnIndex}
-                            rowIndex={rowIndex}
-                            style={style}
-                            columns={columns}
-                            rows={rows}
-                            hoverRowIndex={hoverRowIndex}
-                            onRowHover={onRowHover}
-                            onRowClick={onRowClick}
-                        />
-                    )}
-                </VariableSizeGrid>
-            )}
+        <AutoSizer doNotBailOutOnEmptyChildren={true} data-testid="auto-sizer">
+            {({ height, width }) => {
+                console.log('AutoSizer dimensions:', { height, width });
+                
+                return (
+                    <VariableSizeGrid
+                        ref={ref}
+                        width={width}
+                        height={height}
+                        columnCount={columns.length}
+                        columnWidth={getColumnWidth}
+                        rowCount={rows.length}
+                        rowHeight={getRowHeight}
+                        onScroll={onScroll}
+                    >
+                        {({ columnIndex, rowIndex, style }) => {
+                            console.log('Rendering cell:', {
+                                columnIndex,
+                                rowIndex,
+                                style,
+                                columnData: columns[columnIndex],
+                                rowData: rows[rowIndex]
+                            });
+                            
+                            return (
+                                <TableCell
+                                    columnIndex={columnIndex}
+                                    rowIndex={rowIndex}
+                                    style={style}
+                                    columns={columns}
+                                    rows={rows}
+                                    hoverRowIndex={hoverRowIndex}
+                                    onRowHover={onRowHover}
+                                    onRowClick={onRowClick}
+                                />
+                            );
+                        }}
+                    </VariableSizeGrid>
+                );
+            }}
         </AutoSizer>
     );
 });

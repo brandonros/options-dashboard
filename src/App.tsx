@@ -35,10 +35,6 @@ const AppContent = () => {
         }
     };
 
-    useEffect(() => {
-        loadData();
-    }, []);
-
     const loadData = async () => {
         setIsLoading(true);
         try {

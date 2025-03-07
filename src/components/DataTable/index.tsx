@@ -91,8 +91,8 @@ export const DataTable: React.FC<DataTableProps> = ({ columns }) => {
     };
 
     return (
-        <div style={STYLES.container}>
-            <div style={STYLES.summary}>
+        <div className="table-container" style={STYLES.container}>
+            <div className="table-summary" style={STYLES.summary}>
                 <span>{processedRows.length} / {totalRows} rows</span><br />
             </div>
 
@@ -103,7 +103,7 @@ export const DataTable: React.FC<DataTableProps> = ({ columns }) => {
                 onSortChange={handleSortChange}
             />
 
-            <div style={STYLES.gridWrapper}>
+            <div className="table-grid-wrapper" style={STYLES.gridWrapper}>
                 <TableVirtualGrid
                     ref={gridRef}
                     columns={columns}
@@ -114,7 +114,7 @@ export const DataTable: React.FC<DataTableProps> = ({ columns }) => {
                     onRowClick={handleRowClick}
                 />
                 {popup.isVisible && (
-                    <div style={{
+                    <div className="table-popup" style={{
                         position: 'fixed',
                         left: popup.x,
                         top: popup.y + 20, // Offset to show below cursor

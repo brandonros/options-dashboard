@@ -59,8 +59,8 @@ export const TableHeader = forwardRef<HTMLDivElement, TableHeaderProps>(({
     const { filters, sorts } = useTableContext();
 
     return (
-        <div ref={ref} style={STYLES.container}>
-            <div style={STYLES.row}>
+        <div className="table-header" ref={ref} style={STYLES.container}>
+            <div className="table-header-headers-row" style={STYLES.row}>
                 {columns.map((column, index) => (
                     <div
                         key={`header-${column.name}`}
@@ -75,7 +75,8 @@ export const TableHeader = forwardRef<HTMLDivElement, TableHeaderProps>(({
                     </div>
                 ))}
             </div>
-            <div style={STYLES.row}>
+
+            <div className="table-header-filters-row" style={STYLES.row}>
                 {columns.map((column, index) => (
                     <div 
                         key={`filter-${column.name}`} 

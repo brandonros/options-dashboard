@@ -40,23 +40,6 @@ export const TableCell = ({
     onRowHover,
     onRowClick,
 }: TableCellProps) => {
-    console.log('hoverRowIndex', hoverRowIndex);
-    const columnName = columns[columnIndex].name;
-    const columnType = columns[columnIndex].type;
-    const row = rows[rowIndex];
-    
-    const cellStyle = {
-        ...style,
-        borderRight: '1px solid black',
-        borderBottom: '1px solid black',
-        borderLeft: columnIndex === 0 ? '1px solid black' : 'none', // left most cell
-        backgroundColor: getBackgroundColor(row, rowIndex, hoverRowIndex),
-        cursor: 'pointer',
-        padding: `1px`,
-        boxSizing: 'border-box' as const,
-        display: 'flex',
-    };
-
     const getAnnotation = (columnName: string, columnType: string, value: any) => {
         if (columnName === 'prob_itm_at_expiration') {
             return Number(value) > 10 ? '❌' : '✅';
@@ -87,11 +70,36 @@ export const TableCell = ({
         return `${value} ${annotation}`;
     };
 
+    const columnName = columns[columnIndex].name;
+    const columnType = columns[columnIndex].type;
+    const row = rows[rowIndex];
     const cellValue = row[columnName as keyof Row];
     const cellValueFormatted = formatCellValue(columnName, columnType, cellValue);
 
+    console.log(`TableCell rendering - Row: ${rowIndex}, Column: ${columnIndex}`, {
+        columnName,
+        columnType,
+        row,
+        cellValue,
+        cellValueFormatted,
+        style
+    });
+    
+    const cellStyle = {
+        ...style,
+        borderRight: '1px solid black',
+        borderBottom: '1px solid black',
+        borderLeft: columnIndex === 0 ? '1px solid black' : 'none', // left most cell
+        backgroundColor: getBackgroundColor(row, rowIndex, hoverRowIndex),
+        cursor: 'pointer',
+        padding: `1px`,
+        boxSizing: 'border-box' as const,
+        display: 'flex',
+    };
+
     return (
         <div 
+            className="table-cell"
             style={cellStyle}
             onMouseEnter={() => onRowHover(rowIndex, true)}
             onMouseLeave={() => onRowHover(rowIndex, false)}
