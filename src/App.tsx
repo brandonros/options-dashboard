@@ -127,9 +127,13 @@ const AppContent = () => {
             fontFamily: 'monospace'
         }}>
             <div style={STYLES.controlContainer}>
+                {/* loading row */}
+                <div style={STYLES.row}>
+                    {isLoading ? <span>loading...</span> : <span>loaded</span>}
+                </div>
+
                 {/* page loaded row */}
                 <div style={STYLES.row}>
-                    {isLoading && <span>loading...</span>}
                     <span>Page loaded: {new Intl.DateTimeFormat('en-US', {
                         timeZone: 'America/New_York',
                         dateStyle: 'medium',
@@ -139,13 +143,11 @@ const AppContent = () => {
 
                 {/* last updated row */}
                 <div style={STYLES.row}>
-                    {oldestRow && (
-                        <span>Last updated: {new Intl.DateTimeFormat('en-US', {
-                            timeZone: 'America/New_York',
-                            dateStyle: 'medium',
-                            timeStyle: 'short'
-                        }).format(new Date(oldestRow.scraped_at))}</span>
-                    )}
+                    <span>Last updated: {oldestRow && new Intl.DateTimeFormat('en-US', {
+                        timeZone: 'America/New_York',
+                        dateStyle: 'medium',
+                        timeStyle: 'short'
+                    }).format(new Date(oldestRow.scraped_at))}</span>
                 </div>
                 
                 {/* Update and extended checkbox row */}
