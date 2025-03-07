@@ -75,6 +75,16 @@ export const TableCell = ({
     const row = rows[rowIndex];
     const cellValue = row[columnName as keyof Row];
     const cellValueFormatted = formatCellValue(columnName, columnType, cellValue);
+    const backgroundColor = getBackgroundColor(row, rowIndex, hoverRowIndex);
+
+    style.borderRight = '1px solid black';
+    style.borderBottom = '1px solid black';
+    style.borderLeft = columnIndex === 0 ? '1px solid black' : 'none';
+    style.backgroundColor = backgroundColor;
+    style.cursor = 'pointer';
+    style.padding = '1px';
+    style.boxSizing = 'border-box';
+    style.display = 'flex';
 
     console.log(`TableCell rendering - Row: ${rowIndex}, Column: ${columnIndex}`, {
         columnName,
@@ -82,25 +92,14 @@ export const TableCell = ({
         row,
         cellValue,
         cellValueFormatted,
-        style
+        style,
     });
-    
-    const cellStyle = {
-        ...style,
-        borderRight: '1px solid black',
-        borderBottom: '1px solid black',
-        borderLeft: columnIndex === 0 ? '1px solid black' : 'none', // left most cell
-        backgroundColor: getBackgroundColor(row, rowIndex, hoverRowIndex),
-        cursor: 'pointer',
-        padding: `1px`,
-        boxSizing: 'border-box' as const,
-        display: 'flex',
-    };
 
     return (
         <div 
-            className="table-cell"
-            style={cellStyle}
+            className={`table-cell`}
+            data-testid={`table-cell-${columnName}-${rowIndex}-${columnIndex}`}
+            style={style}
             onMouseEnter={() => onRowHover(rowIndex, true)}
             onMouseLeave={() => onRowHover(rowIndex, false)}
             onClick={(event) => onRowClick(rowIndex, event)}

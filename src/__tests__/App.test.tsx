@@ -66,9 +66,19 @@ describe('App Table Component', () => {
             scrollWidth: container.scrollWidth
         });
 
+        // Add a pretty print function
+        const prettyPrintHTML = (html: string) => {
+            const formatter = new DOMParser().parseFromString(html, 'text/html');
+            return formatter.documentElement.innerHTML
+                .replace(/></g, '>\n<')
+                .split('\n')
+                .map(line => '    ' + line)
+                .join('\n');
+        };
+
         // Immediately after render
         console.log('Immediately after render:');
-        console.log('Container HTML:', container.innerHTML);
+        console.log('Container HTML:\n', prettyPrintHTML(container.innerHTML));
         
         // Wait and check multiple times
         await act(async () => {
@@ -78,7 +88,7 @@ describe('App Table Component', () => {
                 
                 // Check virtual grid
                 const virtualGrid = container.querySelector('[role="grid"]');
-                console.log('Virtual grid:', virtualGrid?.outerHTML);
+                console.log('Virtual grid:\n', virtualGrid ? prettyPrintHTML(virtualGrid.outerHTML) : 'Not found');
                 
                 // Check table cells
                 const tableCells = container.getElementsByClassName('table-cell');
@@ -105,8 +115,8 @@ describe('App Table Component', () => {
                 absoluteElements: absoluteElements.length,
                 containerHeight: container.offsetHeight,
                 containerWidth: container.offsetWidth,
-                html: container.innerHTML
             });
+            console.log('Container HTML:\n', prettyPrintHTML(container.innerHTML));
             
             expect(tableCells.length).toBeGreaterThan(0);
         }, { 

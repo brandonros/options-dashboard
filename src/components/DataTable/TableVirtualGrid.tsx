@@ -17,6 +17,7 @@ export const TableVirtualGrid = forwardRef<VariableSizeGrid, TableVirtualGridPro
         const column = columns[index];
         return calculateColumnWidth(column);
     };
+
     const getRowHeight = () => 20; // Could be made configurable
 
     console.log('TableVirtualGrid render:', {
@@ -31,6 +32,7 @@ export const TableVirtualGrid = forwardRef<VariableSizeGrid, TableVirtualGridPro
                 
                 return (
                     <VariableSizeGrid
+                        className='table-virtual-grid'
                         ref={ref}
                         width={width}
                         height={height}
