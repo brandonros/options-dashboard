@@ -22,6 +22,12 @@ export const COLUMNS =[
     { name: 'implied_volatility', type: 'percentage' },
     { name: 'volatility_prob_itm_ratio', type: 'percentage' },
 
+    { name: 'expected_move_percent', type: 'percentage' },
+    { name: 'expected_move_dollars', type: 'currency' },
+    { name: 'margin_of_safety', type: 'currency' },
+    { name: 'margin_of_safety_percentage', type: 'percentage' },
+    { name: 'adjusted_margin_of_safety_percentage', type: 'percentage' },
+
     // { name: 'daily_secured_ror_per_iv', type: 'percentage' },
     // { name: 'daily_secured_ror_per_expected_move', type: 'percentage' },
     // { name: 'daily_secured_ror_per_delta', type: 'percentage' },
@@ -34,12 +40,6 @@ export const COLUMNS =[
     { name: 'last_trade_price', type: 'currency' },
     { name: 'bid_ask_spread', type: 'currency' },
     { name: 'slippage_impact', type: 'percentage' },
-
-    { name: 'delta', type: 'number' },
-    { name: 'gamma', type: 'number' },
-    { name: 'theta', type: 'number' },
-    { name: 'vega', type: 'number' },
-    { name: 'rho', type: 'number' },
 
     { name: 'volume', type: 'number' },
     { name: 'open_interest', type: 'number' },
@@ -55,10 +55,10 @@ export const COLUMNS =[
 
     { name: 'premium_iv_ratio', type: 'percentage' },
     { name: 'theta_efficiency', type: 'percentage' },
-    { name: 'expected_move_percent', type: 'percentage' },
-    { name: 'expected_move_dollars', type: 'currency' },
 
-    { name: 'margin_of_safety', type: 'currency' },
-    { name: 'margin_of_safety_percentage', type: 'percentage' },
-    { name: 'adjusted_margin_of_safety_percentage', type: 'percentage' },
+    { name: 'delta', type: 'number' },
+    { name: 'gamma', type: 'number' },
+    { name: 'theta', type: 'number' },
+    { name: 'vega', type: 'number' },
+    { name: 'rho', type: 'number' },
 ]
