@@ -65,6 +65,10 @@ export interface Row {
     daily_secured_ror_per_expected_move: string
     daily_secured_ror_per_delta: string
     expected_move_percent: string
+    expected_move_dollars: string
+    margin_of_safety: string
+    margin_of_safety_percentage: string
+    adjusted_margin_of_safety_percentage: string
     simple_roi: string
     daily_simple_roi: string
     risk_adjusted_daily_simple_roi: string

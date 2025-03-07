@@ -56,4 +56,9 @@ export const COLUMNS =[
     { name: 'premium_iv_ratio', type: 'percentage' },
     { name: 'theta_efficiency', type: 'percentage' },
     { name: 'expected_move_percent', type: 'percentage' },
+    { name: 'expected_move_dollars', type: 'currency' },
+
+    { name: 'margin_of_safety', type: 'currency' },
+    { name: 'margin_of_safety_percentage', type: 'percentage' },
+    { name: 'adjusted_margin_of_safety_percentage', type: 'percentage' },
 ]
