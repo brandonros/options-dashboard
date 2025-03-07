@@ -135,6 +135,7 @@ const AppContent = () => {
                         dateStyle: 'medium',
                         timeStyle: 'short'
                     }).format(pageLoadTime)}</span>
+                    <br />
                     {oldestRow && (
                         <span>Last updated: {new Intl.DateTimeFormat('en-US', {
                             timeZone: 'America/New_York',
