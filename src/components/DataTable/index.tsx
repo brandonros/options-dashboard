@@ -71,7 +71,6 @@ export const DataTable: React.FC<DataTableProps> = ({ columns }) => {
     };
 
     const handleRowHover = (rowIndex: number, isHovered: boolean) => {
-        console.log('rowIndex', rowIndex, 'isHovered', isHovered);
         setHoverRowIndex(isHovered ? rowIndex : -1);
     };
 

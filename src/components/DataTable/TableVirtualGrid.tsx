@@ -20,16 +20,9 @@ export const TableVirtualGrid = forwardRef<VariableSizeGrid, TableVirtualGridPro
 
     const getRowHeight = () => 20; // Could be made configurable
 
-    console.log('TableVirtualGrid render:', {
-        columnsLength: columns.length,
-        rowsLength: rows.length,
-    });
-
     return (
         <AutoSizer doNotBailOutOnEmptyChildren={true} data-testid="auto-sizer">
             {({ height, width }) => {
-                console.log('AutoSizer dimensions:', { height, width });
-                
                 return (
                     <VariableSizeGrid
                         className='table-virtual-grid'
@@ -43,14 +36,6 @@ export const TableVirtualGrid = forwardRef<VariableSizeGrid, TableVirtualGridPro
                         onScroll={onScroll}
                     >
                         {({ columnIndex, rowIndex, style }) => {
-                            console.log('Rendering cell:', {
-                                columnIndex,
-                                rowIndex,
-                                style,
-                                columnData: columns[columnIndex],
-                                rowData: rows[rowIndex]
-                            });
-                            
                             return (
                                 <TableCell
                                     columnIndex={columnIndex}

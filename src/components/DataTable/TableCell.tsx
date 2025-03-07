@@ -86,15 +86,6 @@ export const TableCell = ({
     style.boxSizing = 'border-box';
     style.display = 'flex';
 
-    console.log(`TableCell rendering - Row: ${rowIndex}, Column: ${columnIndex}`, {
-        columnName,
-        columnType,
-        row,
-        cellValue,
-        cellValueFormatted,
-        style,
-    });
-
     return (
         <div 
             className={`table-cell`}
