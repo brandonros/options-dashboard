@@ -12,6 +12,7 @@ const AppContent = () => {
     const [risky, setRisky] = useState(false);
     const [autoRefresh, setAutoRefresh] = useState(false);
     const [oldestRow, setOldestRow] = useState<Row | null>(null);    
+    const [pageLoadTime, _setPageLoadTime] = useState<Date>(new Date());
     const { processedRows, setRows, rows } = useTableContext();
     const intervalRef = useRef<number | null>(null);
 
@@ -49,6 +50,13 @@ const AppContent = () => {
     }
 
     const handleUpdateClick = async () => {
+        // Check if more than 5 minutes have elapsed since page load
+        const minutesSinceLoad = (Date.now() - pageLoadTime.getTime()) / (1000 * 60);
+        if (minutesSinceLoad > 5) {
+            console.log('Page has been loaded for over 5 minutes. Please refresh the page to update.');
+            return;
+        }
+
         const start = performance.now();
         setIsLoading(true);
         try {
@@ -122,6 +130,11 @@ const AppContent = () => {
                 {/* Status and timestamp row */}
                 <div style={STYLES.row}>
                     {isLoading && <span>loading...</span>}
+                    <span>Page loaded: {new Intl.DateTimeFormat('en-US', {
+                        timeZone: 'America/New_York',
+                        dateStyle: 'medium',
+                        timeStyle: 'short'
+                    }).format(pageLoadTime)}</span>
                     {oldestRow && (
                         <span>Last updated: {new Intl.DateTimeFormat('en-US', {
                             timeZone: 'America/New_York',

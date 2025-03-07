@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "tsc --noEmit && node build.js",
-    "serve": "http-server -p 8080 -c-1 dist",
+    "serve": "http-server -p 8081 -c-1 dist",
     "test": "jest"
   },
   "keywords": [],
