@@ -15,6 +15,7 @@ const AppContent = () => {
     const [pageLoadTime, _setPageLoadTime] = useState<Date>(new Date());
     const { processedRows, setRows, rows } = useTableContext();
     const intervalRef = useRef<number | null>(null);
+    const [isControlsVisible, setIsControlsVisible] = useState(false);
 
     const STYLES = {
         button: {
@@ -27,12 +28,22 @@ const AppContent = () => {
             flexDirection: 'column' as const,
             gap: '8px',
             padding: '12px 8px',
-            alignItems: 'flex-end' as const, // Align all rows to the right
+            alignItems: 'flex-end' as const,
+            backgroundColor: '#f5f5f5',
+            borderBottom: '1px solid #ddd',
         },
         row: {
             display: 'flex',
             alignItems: 'center' as const,
             gap: '8px',
+        },
+        toggleButton: {
+            position: 'fixed' as const,
+            top: '10px',
+            right: '10px',
+            zIndex: 1000,
+            padding: '4px 8px',
+            cursor: 'pointer',
         }
     };
 
@@ -126,87 +137,96 @@ const AppContent = () => {
             overflow: 'hidden',
             fontFamily: 'monospace'
         }}>
-            <div style={STYLES.controlContainer}>
-                {/* loading row */}
-                <div style={STYLES.row}>
-                    {isLoading ? <span>loading...</span> : <span>loaded</span>}
-                </div>
+            <button 
+                onClick={() => setIsControlsVisible(!isControlsVisible)}
+                style={STYLES.toggleButton}
+            >
+                {isControlsVisible ? '▼' : '▲'}
+            </button>
 
-                {/* page loaded row */}
-                <div style={STYLES.row}>
-                    <span>Page loaded: {new Intl.DateTimeFormat('en-US', {
-                        timeZone: 'America/New_York',
-                        dateStyle: 'medium',
-                        timeStyle: 'short'
-                    }).format(pageLoadTime)}</span>
-                </div>
+            {isControlsVisible && (
+                <div className="control-container" style={STYLES.controlContainer}>
+                    {/* loading row */}
+                    <div style={STYLES.row}>
+                        {isLoading ? <span>loading...</span> : <span>loaded</span>}
+                    </div>
 
-                {/* last updated row */}
-                <div style={STYLES.row}>
-                    <span>Last updated: {oldestRow && new Intl.DateTimeFormat('en-US', {
-                        timeZone: 'America/New_York',
-                        dateStyle: 'medium',
-                        timeStyle: 'short'
-                    }).format(new Date(oldestRow.scraped_at))}</span>
-                </div>
-                
-                {/* Update and extended checkbox row */}
-                <div style={STYLES.row}>
-                    <input 
-                        style={STYLES.button}
-                        type="button" 
-                        onClick={handleUpdateClick} 
-                        value="update"
-                        disabled={isLoading}
-                    />
-                    <label>
-                        extended: 
-                        <input 
-                            type="checkbox" 
-                            onChange={(e) => setExtended(e.target.checked)} 
-                            style={{ marginLeft: '4px' }}
-                        />
-                    </label>
-                </div>
+                    {/* page loaded row */}
+                    <div style={STYLES.row}>
+                        <span>Page loaded: {new Intl.DateTimeFormat('en-US', {
+                            timeZone: 'America/New_York',
+                            dateStyle: 'medium',
+                            timeStyle: 'short'
+                        }).format(pageLoadTime)}</span>
+                    </div>
 
-                {/* auto refresh + risky row */}
-                 <div style={STYLES.row}>
-                    <label>
-                        auto refresh: 
+                    {/* last updated row */}
+                    <div style={STYLES.row}>
+                        <span>Last updated: {oldestRow && new Intl.DateTimeFormat('en-US', {
+                            timeZone: 'America/New_York',
+                            dateStyle: 'medium',
+                            timeStyle: 'short'
+                        }).format(new Date(oldestRow.scraped_at))}</span>
+                    </div>
+                    
+                    {/* Update and extended checkbox row */}
+                    <div style={STYLES.row}>
                         <input 
-                            type="checkbox" 
-                            checked={autoRefresh}
-                            onChange={(e) => setAutoRefresh(e.target.checked)} 
-                            style={{ marginLeft: '4px' }}
+                            style={STYLES.button}
+                            type="button" 
+                            onClick={handleUpdateClick} 
+                            value="update"
+                            disabled={isLoading}
                         />
-                    </label>
-                    <label>
-                        risky: 
+                        <label>
+                            extended: 
+                            <input 
+                                type="checkbox" 
+                                onChange={(e) => setExtended(e.target.checked)} 
+                                style={{ marginLeft: '4px' }}
+                            />
+                        </label>
+                    </div>
+
+                    {/* auto refresh + risky row */}
+                     <div style={STYLES.row}>
+                        <label>
+                            auto refresh: 
+                            <input 
+                                type="checkbox" 
+                                checked={autoRefresh}
+                                onChange={(e) => setAutoRefresh(e.target.checked)} 
+                                style={{ marginLeft: '4px' }}
+                            />
+                        </label>
+                        <label>
+                            risky: 
+                            <input 
+                                type="checkbox" 
+                                checked={risky}
+                                onChange={(e) => setRisky(e.target.checked)} 
+                                style={{ marginLeft: '4px' }}
+                            />
+                        </label>
+                    </div>
+                    
+                    {/* Export buttons row */}
+                    <div style={STYLES.row}>
                         <input 
-                            type="checkbox" 
-                            checked={risky}
-                            onChange={(e) => setRisky(e.target.checked)} 
-                            style={{ marginLeft: '4px' }}
+                            style={STYLES.button} 
+                            type="button" 
+                            onClick={() => exportCsv(processedRows)} 
+                            value="export csv" 
                         />
-                    </label>
+                        <input 
+                            style={STYLES.button} 
+                            type="button" 
+                            onClick={() => exportJson(processedRows)} 
+                            value="export json" 
+                        />
+                    </div>
                 </div>
-                
-                {/* Export buttons row */}
-                <div style={STYLES.row}>
-                    <input 
-                        style={STYLES.button} 
-                        type="button" 
-                        onClick={() => exportCsv(processedRows)} 
-                        value="export csv" 
-                    />
-                    <input 
-                        style={STYLES.button} 
-                        type="button" 
-                        onClick={() => exportJson(processedRows)} 
-                        value="export json" 
-                    />
-                </div>
-            </div>
+            )}
 
             <div style={{ flex: 1, minHeight: 0, paddingBottom: '20px' }}>
                 <DataTable
