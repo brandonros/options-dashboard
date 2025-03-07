@@ -22,14 +22,14 @@ export const COLUMNS =[
     { name: 'implied_volatility', type: 'percentage' },
     { name: 'volatility_prob_itm_ratio', type: 'percentage' },
 
-    { name: 'expected_move_percent', type: 'percentage' },
-    { name: 'expected_move_dollars', type: 'currency' },
+    { name: 'implied_move_percent', type: 'percentage' },
+    { name: 'implied_move_dollars', type: 'currency' },
     { name: 'margin_of_safety', type: 'currency' },
     { name: 'margin_of_safety_percentage', type: 'percentage' },
     { name: 'adjusted_margin_of_safety_percentage', type: 'percentage' },
 
     // { name: 'daily_secured_ror_per_iv', type: 'percentage' },
-    // { name: 'daily_secured_ror_per_expected_move', type: 'percentage' },
+    // { name: 'daily_secured_ror_per_implied_move', type: 'percentage' },
     // { name: 'daily_secured_ror_per_delta', type: 'percentage' },
     // { name: 'daily_secured_ror', type: 'percentage' },
     // { name: 'secured_ror', type: 'percentage' },

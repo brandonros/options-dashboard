@@ -62,10 +62,10 @@ export interface Row {
     premium_to_breakeven: string
     daily_secured_ror: string
     daily_secured_ror_per_iv: string
-    daily_secured_ror_per_expected_move: string
+    daily_secured_ror_per_implied_move: string
     daily_secured_ror_per_delta: string
-    expected_move_percent: string
-    expected_move_dollars: string
+    implied_move_percent: string
+    implied_move_dollars: string
     margin_of_safety: string
     margin_of_safety_percentage: string
     adjusted_margin_of_safety_percentage: string
