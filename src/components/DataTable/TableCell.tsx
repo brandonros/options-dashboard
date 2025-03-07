@@ -8,28 +8,22 @@ const getBackgroundColor = (row: Row, rowIndex: number, hoverRowIndex: number) =
     }
 
     // ITM Call (strike below market) - cool blue
-    if (row.instrument_type === 'call' && row.strike_price < row.underlying_last_trade_price) {
+    if (row.instrument_type === 'call' && Number(row.strike_price) < Number(row.underlying_last_trade_price)) {
         return 'rgba(0, 105, 255, 0.15)';
     }
 
     // OTM Call (strike above market) - light green
-    if (row.instrument_type === 'call' && row.strike_price > row.underlying_last_trade_price) {
+    if (row.instrument_type === 'call' && Number(row.strike_price) > Number(row.underlying_last_trade_price)) {
         return 'rgba(76, 175, 80, 0.15)';
     }
 
     // ITM Put (strike above market) - deep purple
-    if (row.instrument_type === 'put' && row.strike_price > row.underlying_last_trade_price) {
-        if (row.symbol === 'COST') {
-            debugger
-        }
+    if (row.instrument_type === 'put' && Number(row.strike_price) > Number(row.underlying_last_trade_price)) {
         return 'rgba(103, 58, 183, 0.15)';
     }
 
     // OTM Put (strike below market) - amber/orange
-    if (row.instrument_type === 'put' && row.strike_price < row.underlying_last_trade_price) {
-        if (row.symbol === 'AVGO') {
-            debugger
-        }
+    if (row.instrument_type === 'put' && Number(row.strike_price) < Number(row.underlying_last_trade_price)) {
         return 'rgba(255, 152, 0, 0.15)';
     }
 
