@@ -127,7 +127,7 @@ const AppContent = () => {
             fontFamily: 'monospace'
         }}>
             <div style={STYLES.controlContainer}>
-                {/* Status and timestamp row */}
+                {/* page loaded row */}
                 <div style={STYLES.row}>
                     {isLoading && <span>loading...</span>}
                     <span>Page loaded: {new Intl.DateTimeFormat('en-US', {
@@ -135,7 +135,10 @@ const AppContent = () => {
                         dateStyle: 'medium',
                         timeStyle: 'short'
                     }).format(pageLoadTime)}</span>
-                    <br />
+                </div>
+
+                {/* last updated row */}
+                <div style={STYLES.row}>
                     {oldestRow && (
                         <span>Last updated: {new Intl.DateTimeFormat('en-US', {
                             timeZone: 'America/New_York',
