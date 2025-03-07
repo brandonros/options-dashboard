@@ -39,11 +39,15 @@ const AppContent = () => {
         },
         toggleButton: {
             position: 'fixed' as const,
-            top: '10px',
-            right: '10px',
+            top: '50%',
+            right: '0',
+            transform: 'translateY(-50%)',
             zIndex: 1000,
-            padding: '4px 8px',
+            padding: '8px 4px',
             cursor: 'pointer',
+            backgroundColor: '#f5f5f5',
+            border: '1px solid #ddd',
+            borderRight: 'none',
         }
     };
 
