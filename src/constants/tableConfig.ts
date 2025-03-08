@@ -22,8 +22,8 @@ export const COLUMNS =[
     { name: 'implied_volatility', type: 'percentage', alias: 'iv' },
     { name: 'volatility_prob_itm_ratio', type: 'percentage', alias: 'vol_prob_itm_ratio' },
 
-    { name: 'implied_move_percent', type: 'percentage', alias: 'impl_move_pct' },
-    { name: 'implied_move_dollars', type: 'currency', alias: 'impl_move_usd' },
+    { name: 'straddle_implied_move_percent', type: 'percentage', alias: 'impl_move_pct' },
+    { name: 'straddle_implied_move_dollars', type: 'currency', alias: 'impl_move_usd' },
     { name: 'margin_of_safety', type: 'currency', alias: 'safety_margin_usd' },
     { name: 'margin_of_safety_percentage', type: 'percentage', alias: 'safety_margin_pct' },
     { name: 'adjusted_margin_of_safety_percentage', type: 'percentage', alias: 'adj_safety_margin_pct' },
