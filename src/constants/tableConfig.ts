@@ -41,9 +41,9 @@ export const COLUMNS = [
     { name: 'long_percentage_distance_to_breakeven', type: 'percentage', alias: 'dist_to_breakeven_long_pct' },
     { name: 'short_percentage_distance_to_breakeven', type: 'percentage', alias: 'dist_to_breakeven_short_pct' },
 
-    { name: 'secured_ror', type: 'percentage', alias: 'ror' },
-    { name: 'daily_secured_ror', type: 'percentage', alias: 'ror_day' },
-    { name: 'annualized_secured_ror', type: 'percentage', alias: 'ror_year' },
+    { name: 'secured_ror', type: 'percentage', alias: 'ror_secured' },
+    { name: 'daily_secured_ror', type: 'percentage', alias: 'ror_secured_day' },
+    { name: 'annualized_secured_ror', type: 'percentage', alias: 'ror_secured_year' },
 
     { name: 'naked_ror', type: 'percentage', alias: 'ror_naked' },
     { name: 'daily_naked_ror', type: 'percentage', alias: 'ror_naked_day' },
