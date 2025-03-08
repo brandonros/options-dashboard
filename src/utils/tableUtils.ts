@@ -32,6 +32,9 @@ export const calculateColumnWidth = (sorts: Sorts, column: Column) => {
     if (column.name === 'expiration_date') {
         return 100;
     }
+    if (column.name === 'daily_simple_roi') {
+        return 80;
+    }
     const name = column.alias ? column.alias : column.name;
     if (name.length <= 6) {
         return 80 + extraSortWidth;
