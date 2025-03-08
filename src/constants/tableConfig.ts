@@ -2,11 +2,11 @@ export const COLUMNS =[
     { name: 'instrument_type', type: 'string', alias: 'type' },
 
     { name: 'symbol', type: 'string' },
-    { name: 'underlying_last_trade_price', type: 'currency', alias: 'underlying_last' },
+    { name: 'underlying_last_trade_price', type: 'currency', alias: 'underlying' },
 
     { name: 'strike_price', type: 'currency', alias: 'strike' },
     { name: 'mark_price', type: 'currency', alias: 'mark' },
-    { name: 'moneyness_distance', type: 'percentage' },
+    { name: 'moneyness_distance', type: 'percentage', alias: 'strike_dist' },
     { name: 'moneyness', type: 'string' },
 
     { name: 'prob_itm_at_expiration', type: 'percentage', alias: 'prob_itm' },
@@ -16,14 +16,14 @@ export const COLUMNS =[
 
     { name: 'simple_roi', type: 'percentage', alias: 'roi' },
     { name: 'daily_simple_roi', type: 'percentage', alias: 'roi_day' },
+    //{ name: 'risk_adjusted_daily_simple_roi', type: 'percentage', alias: 'adj_roi_day' },
     { name: 'annualized_simple_roi', type: 'percentage', alias: 'roi_year' },
 
-    { name: 'risk_adjusted_daily_simple_roi', type: 'percentage', alias: 'adj_roi_day' },
     { name: 'implied_volatility', type: 'percentage', alias: 'iv' },
-    { name: 'volatility_prob_itm_ratio', type: 'percentage', alias: 'vol_prob_itm_ratio' },
-
     { name: 'straddle_implied_move_percent', type: 'percentage', alias: 'impl_move_pct' },
     { name: 'straddle_implied_move_dollars', type: 'currency', alias: 'impl_move_usd' },
+
+    { name: 'volatility_prob_itm_ratio', type: 'percentage', alias: 'vol_prob_itm_ratio' },
     { name: 'margin_of_safety', type: 'currency', alias: 'safety_margin_usd' },
     { name: 'margin_of_safety_percentage', type: 'percentage', alias: 'safety_margin_pct' },
     { name: 'adjusted_margin_of_safety_percentage', type: 'percentage', alias: 'adj_safety_margin_pct' },
