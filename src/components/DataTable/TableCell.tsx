@@ -44,7 +44,7 @@ export const TableCell = ({
         if (columnName === 'prob_itm_at_expiration') {
             return Number(value) > 10 ? '❌' : '✅';
         }
-        if (columnName === 'daily_simple_roi') {
+        if (columnName === 'daily_secured_ror') {
             return Number(value) <= 0.1 ? '❌' : '✅';
         }
         if (columnName === 'slippage_impact') {
