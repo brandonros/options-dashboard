@@ -9,13 +9,14 @@ export const TableVirtualGrid = forwardRef<VariableSizeGrid, TableVirtualGridPro
     columns,
     rows,
     hoverRowIndex,
+    sorts,
     onScroll,
     onRowHover,
     onRowClick
 }, ref) => {
     const getColumnWidth = (index: number) => {
         const column = columns[index];
-        return calculateColumnWidth(column);
+        return calculateColumnWidth(sorts, column);
     };
 
     const getRowHeight = () => 20; // Could be made configurable

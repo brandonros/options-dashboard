@@ -114,6 +114,7 @@ export type TableHeaderProps = {
 export type TableVirtualGridProps = {
     columns: Columns,
     rows: Rows,
+    sorts: Sorts,
     hoverRowIndex: number,
     onScroll: (event: GridOnScrollProps) => void,
     onRowHover: (rowIndex: number, isHovered: boolean) => void,

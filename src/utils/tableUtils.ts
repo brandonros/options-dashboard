@@ -8,7 +8,9 @@ export const getSortIndicator = (sorts: Sorts, columnName: string) => {
     return '';
 }
 
-export const calculateColumnWidth = (column: Column) => {
+export const calculateColumnWidth = (sorts: Sorts, column: Column) => {
+    const sort = sorts.find(sort => sort.key === column.name);
+    const extraSortWidth = sort ? 10 : 0;
     if (column.name === 'delta') {
         return 80;
     }
@@ -32,7 +34,7 @@ export const calculateColumnWidth = (column: Column) => {
     }
     const name = column.alias ? column.alias : column.name;
     if (name.length <= 6) {
-        return 80;
+        return 80 + extraSortWidth;
     }
-    return name.length * 10;
+    return name.length * 10 + extraSortWidth;
 }

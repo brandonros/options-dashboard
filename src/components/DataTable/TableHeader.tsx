@@ -66,7 +66,7 @@ export const TableHeader = forwardRef<HTMLDivElement, TableHeaderProps>(({
                         key={`header-${column.name}`}
                         style={{
                             ...STYLES.headerCell,
-                            flexBasis: calculateColumnWidth(column),
+                            flexBasis: calculateColumnWidth(sorts, column),
                             ...(index > 0 ? STYLES.headerCellNotFirst : {})
                         }}
                         onClick={() => onSortChange(column.name, column.type)}
@@ -80,7 +80,7 @@ export const TableHeader = forwardRef<HTMLDivElement, TableHeaderProps>(({
                 {columns.map((column, index) => (
                     <div 
                         key={`filter-${column.name}`} 
-                        style={{ ...STYLES.filterCell, flexBasis: calculateColumnWidth(column) }}
+                        style={{ ...STYLES.filterCell, flexBasis: calculateColumnWidth(sorts, column) }}
                     >
                         <input
                             type="text"
