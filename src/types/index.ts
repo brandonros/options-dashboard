@@ -46,7 +46,7 @@ export interface Row {
     bid_ask_spread: string
     slippage_impact: string
     underlying_last_trade_price: string
-    moneyness_distance: string
+    moneyness_distance_percentage: string
     moneyness: string
     prob_itm_at_expiration: string
     days_to_expiration: string

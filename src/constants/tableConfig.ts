@@ -6,7 +6,7 @@ export const COLUMNS = [
 
     { name: 'strike_price', type: 'currency', alias: 'strike' },
     { name: 'mark_price', type: 'currency', alias: 'mark' },
-    { name: 'moneyness_distance', type: 'percentage', alias: 'strike_dist' },
+    { name: 'moneyness_distance_percentage', type: 'percentage', alias: 'strike_dist' },
     { name: 'moneyness', type: 'string' },
 
     { name: 'prob_itm_at_expiration', type: 'percentage', alias: 'prob_itm' },
