@@ -10,7 +10,7 @@ export const getSortIndicator = (sorts: Sorts, columnName: string) => {
 
 export const calculateColumnWidth = (sorts: Sorts, column: Column) => {
     const sort = sorts.find(sort => sort.key === column.name);
-    const extraSortWidth = sort ? 10 : 0;
+    const extraSortWidth = sort ? 20 : 0;
     if (column.name === 'delta') {
         return 80;
     }
