@@ -23,6 +23,8 @@ export type Columns = Column[];
 // Row types
 export interface Row {
     scraped_at: string
+    option_identifier: string
+    complementary_option_identifier: string
     symbol: string
     instrument_type: string
     expiration_date: string
@@ -38,12 +40,12 @@ export interface Row {
     bid_price: string
     ask_price: string
     mark_price: string
+    complementary_mark_price: string
+    straddle_price: string
     last_trade_price: string
     bid_ask_spread: string
     slippage_impact: string
     underlying_last_trade_price: string
-    secured_ror: string
-    naked_ror: string
     moneyness_distance: string
     moneyness: string
     prob_itm_at_expiration: string
@@ -54,27 +56,27 @@ export interface Row {
     premium_iv_ratio: string
     theta_premium_ratio: string
     time_value_ratio: string
-    break_even: string
+    naked_margin_requirement: string
+    secured_capital_requirement: string
     intrinsic_value: string
     extrinsic_value: string
     moneyness_ratio: string
     theta_efficiency: string
-    distance_to_breakeven: string
-    premium_to_breakeven: string
+    break_even: string
+    long_distance_to_breakeven: string
+    short_distance_to_breakeven: string
+    long_percentage_distance_to_breakeven: string
+    short_percentage_distance_to_breakeven: string
+    secured_ror: string
+    naked_ror: string
     daily_secured_ror: string
-    daily_secured_ror_per_iv: string
-    daily_secured_ror_per_implied_move: string
-    daily_secured_ror_per_delta: string
-    implied_move_percent: string
-    implied_move_dollars: string
-    margin_of_safety: string
-    margin_of_safety_percentage: string
-    adjusted_margin_of_safety_percentage: string
-    simple_roi: string
-    daily_simple_roi: string
-    risk_adjusted_daily_simple_roi: string
-    annualized_simple_roi: string
-    volatility_prob_itm_ratio: string
+    daily_naked_ror: string
+    annualized_secured_ror: string
+    annualized_naked_ror: string
+    straddle_implied_move_percent: string
+    straddle_implied_move_dollars: string
+    volatility_implied_move_percent: string
+    volatility_implied_move_dollars: string
 }
 
 export type Rows = Row[];

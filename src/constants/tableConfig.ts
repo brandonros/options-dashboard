@@ -1,4 +1,4 @@
-export const COLUMNS =[
+export const COLUMNS = [
     { name: 'instrument_type', type: 'string', alias: 'type' },
 
     { name: 'symbol', type: 'string' },
@@ -14,30 +14,17 @@ export const COLUMNS =[
     // { name: 'days_to_expiration', type: 'number' },
     { name: 'capital_commitment_period', type: 'number', alias: 'num_days' },
 
-    { name: 'cash_secured_put_roi', type: 'percentage', alias: 'roi' },
-    { name: 'daily_cash_secured_put_roi', type: 'percentage', alias: 'roi_day' },
-    { name: 'annualized_cash_secured_put_roi', type: 'percentage', alias: 'roi_year' },
+    { name: 'secured_ror', type: 'percentage', alias: 'ror' },
+    { name: 'daily_secured_ror', type: 'percentage', alias: 'ror_day' },
+    { name: 'annualized_secured_ror', type: 'percentage', alias: 'ror_year' },
+
+    { name: 'naked_ror', type: 'percentage', alias: 'ror_naked' },
+    { name: 'daily_naked_ror', type: 'percentage', alias: 'ror_naked_day' },
+    { name: 'annualized_naked_ror', type: 'percentage', alias: 'ror_naked_year' },
 
     { name: 'implied_volatility', type: 'percentage', alias: 'iv' },
     { name: 'straddle_implied_move_percent', type: 'percentage', alias: 'impl_move_pct' },
     { name: 'straddle_implied_move_dollars', type: 'currency', alias: 'impl_move_usd' },
-
-    { name: 'volatility_prob_itm_ratio', type: 'percentage', alias: 'vol_prob_itm_ratio' },
-    { name: 'margin_of_safety', type: 'currency', alias: 'safety_margin_usd' },
-    { name: 'margin_of_safety_percentage', type: 'percentage', alias: 'safety_margin_pct' },
-    { name: 'adjusted_margin_of_safety_percentage', type: 'percentage', alias: 'adj_safety_margin_pct' },
-
-    // { name: 'daily_secured_ror_per_iv', type: 'percentage' },
-    // { name: 'daily_secured_ror_per_implied_move', type: 'percentage' },
-    // { name: 'daily_secured_ror_per_delta', type: 'percentage' },
-    // { name: 'daily_secured_ror', type: 'percentage' },
-    // { name: 'secured_ror', type: 'percentage' },
-    // { name: 'naked_ror', type: 'percentage' },
-
-    { name: 'daily_cash_secured_put_roi', type: 'percentage' },
-    { name: 'daily_covered_call_roi', type: 'percentage' },
-    { name: 'daily_naked_call_roi', type: 'percentage' },
-    { name: 'daily_naked_put_roi', type: 'percentage' },
 
     { name: 'bid_price', type: 'currency', alias: 'bid' },
     { name: 'ask_price', type: 'currency', alias: 'ask' },
@@ -53,12 +40,18 @@ export const COLUMNS =[
     { name: 'extrinsic_value', type: 'currency', alias: 'ext_value' },
 
     { name: 'break_even', type: 'currency' },
-    { name: 'distance_to_breakeven', type: 'currency', alias: 'dist_to_breakeven' },
+    { name: 'long_distance_to_breakeven', type: 'currency', alias: 'dist_to_breakeven_long' },
+    { name: 'short_distance_to_breakeven', type: 'currency', alias: 'dist_to_breakeven_short' },
+    { name: 'long_percentage_distance_to_breakeven', type: 'percentage', alias: 'dist_to_breakeven_long_pct' },
+    { name: 'short_percentage_distance_to_breakeven', type: 'percentage', alias: 'dist_to_breakeven_short_pct' },
 
     { name: 'moneyness_ratio', type: 'percentage' },
 
+    { name: 'premium_underlying_ratio', type: 'percentage' },
     { name: 'premium_iv_ratio', type: 'percentage' },
     { name: 'theta_efficiency', type: 'percentage' },
+    { name: 'theta_premium_ratio', type: 'percentage' },
+    { name: 'time_value_ratio', type: 'percentage' },
 
     { name: 'delta', type: 'number' },
     { name: 'gamma', type: 'number' },
