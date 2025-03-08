@@ -34,6 +34,11 @@ export const COLUMNS =[
     // { name: 'secured_ror', type: 'percentage' },
     // { name: 'naked_ror', type: 'percentage' },
 
+    { name: 'daily_cash_secured_put_roi', type: 'percentage' },
+    { name: 'daily_covered_call_roi', type: 'percentage' },
+    { name: 'daily_naked_call_roi', type: 'percentage' },
+    { name: 'daily_naked_put_roi', type: 'percentage' },
+
     { name: 'bid_price', type: 'currency', alias: 'bid' },
     { name: 'ask_price', type: 'currency', alias: 'ask' },
     { name: 'last_trade_price', type: 'currency', alias: 'last' },
