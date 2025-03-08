@@ -73,7 +73,7 @@ export const COLUMNS = [
     { name: 'scraped_at', type: 'datetime' },
 
     { name: 'daily_probability_time_decay', type: 'number' },
-    { name: 'elta_exposure_risk', type: 'number' },
+    { name: 'delta_exposure_risk', type: 'number' },
     { name: 'expected_daily_move_percentage', type: 'percentage' },
     { name: 'expected_terminal_itm_probability', type: 'number' },
     { name: 'extrinsic_value_density', type: 'number' },

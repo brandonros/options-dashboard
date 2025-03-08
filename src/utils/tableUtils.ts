@@ -35,6 +35,9 @@ export const calculateColumnWidth = (sorts: Sorts, column: Column) => {
     if (column.name === 'daily_simple_roi') {
         return 100;
     }
+    if (column.name === 'scraped_at') {
+        return 250;
+    }
     const name = column.alias ? column.alias : column.name;
     if (name.length <= 6) {
         return 80 + extraSortWidth;
