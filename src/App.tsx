@@ -13,9 +13,9 @@ const AppContent = () => {
     const [autoRefresh, setAutoRefresh] = useState(false);
     const [oldestRow, setOldestRow] = useState<Row | null>(null);    
     const [pageLoadTime, _setPageLoadTime] = useState<Date>(new Date());
-    const { processedRows, setRows, rows } = useTableContext();
-    const intervalRef = useRef<number | null>(null);
     const [isControlsVisible, setIsControlsVisible] = useState(false);
+    const intervalRef = useRef<number | null>(null);
+    const { processedRows, setRows, rows } = useTableContext();
 
     const STYLES = {
         button: {

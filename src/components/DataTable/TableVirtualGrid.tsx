@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useEffect } from 'react';
 import { VariableSizeGrid } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { TableVirtualGridProps } from '../../types';
@@ -14,6 +14,12 @@ export const TableVirtualGrid = forwardRef<VariableSizeGrid, TableVirtualGridPro
     onRowHover,
     onRowClick
 }, ref) => {
+    useEffect(() => {
+        if (ref && 'current' in ref && ref.current) {
+            ref.current.resetAfterColumnIndex(0, true);
+        }
+    }, [sorts]);
+    
     const getColumnWidth = (index: number) => {
         const column = columns[index];
         return calculateColumnWidth(sorts, column);
