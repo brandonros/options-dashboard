@@ -29,7 +29,7 @@ export const calculateColumnWidth = (column: Column) => {
     }
     const name = column.alias ? column.alias : column.name;
     if (name.length <= 6) {
-        return 100;
+        return 80;
     }
-    return name.length * 10;
+    return name.length * 12;
 }
