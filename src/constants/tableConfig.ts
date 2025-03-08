@@ -18,7 +18,7 @@ export const COLUMNS =[
     { name: 'daily_simple_roi', type: 'percentage', alias: 'daily_roi' },
     { name: 'annualized_simple_roi', type: 'percentage', alias: 'annualized_roi' },
 
-    { name: 'risk_adjusted_daily_simple_roi', type: 'percentage', alias: 'risk_adjusted_daily_roi' },
+    { name: 'risk_adjusted_daily_simple_roi', type: 'percentage', alias: 'adj_daily_roi' },
     { name: 'implied_volatility', type: 'percentage', alias: 'iv' },
     { name: 'volatility_prob_itm_ratio', type: 'percentage', alias: 'vol_prob_itm_ratio' },
 
@@ -26,7 +26,7 @@ export const COLUMNS =[
     { name: 'implied_move_dollars', type: 'currency', alias: 'implied_move_usd' },
     { name: 'margin_of_safety', type: 'currency', alias: 'margin_of_safety_usd' },
     { name: 'margin_of_safety_percentage', type: 'percentage', alias: 'margin_of_safety_pct' },
-    { name: 'adjusted_margin_of_safety_percentage', type: 'percentage', alias: 'adjusted_margin_of_safety_pct' },
+    { name: 'adjusted_margin_of_safety_percentage', type: 'percentage', alias: 'adj_margin_of_safety_pct' },
 
     // { name: 'daily_secured_ror_per_iv', type: 'percentage' },
     // { name: 'daily_secured_ror_per_implied_move', type: 'percentage' },
