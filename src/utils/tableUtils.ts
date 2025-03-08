@@ -27,5 +27,5 @@ export const calculateColumnWidth = (column: Column) => {
     if (column.name === 'volume') {
         return 80;
     }
-    return column.name.length * 10;
+    return (column.alias ? column.alias.length : column.name.length) * 10;
 }
