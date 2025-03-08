@@ -15,6 +15,7 @@ export const COLUMNS =[
     { name: 'capital_commitment_period', type: 'number', alias: 'num_days' },
 
     { name: 'simple_roi', type: 'percentage', alias: 'roi' },
+    { name: 'naked_ror', type: 'percentage', alias: 'naked_ror' },
     { name: 'daily_simple_roi', type: 'percentage', alias: 'roi_day' },
     //{ name: 'risk_adjusted_daily_simple_roi', type: 'percentage', alias: 'adj_roi_day' },
     { name: 'annualized_simple_roi', type: 'percentage', alias: 'roi_year' },
