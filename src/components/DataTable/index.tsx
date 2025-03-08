@@ -107,6 +107,7 @@ export const DataTable: React.FC<DataTableProps> = ({ columns }) => {
                     ref={gridRef}
                     columns={columns}
                     rows={processedRows}
+                    sorts={sorts}
                     hoverRowIndex={hoverRowIndex}
                     onScroll={handleGridScroll}
                     onRowHover={handleRowHover}
