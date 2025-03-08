@@ -14,11 +14,11 @@ export const COLUMNS =[
     // { name: 'days_to_expiration', type: 'number' },
     { name: 'capital_commitment_period', type: 'number', alias: 'num_days' },
 
-    { name: 'simple_roi', type: 'percentage', alias: 'roi' },
+    { name: 'cash_secured_put_roi', type: 'percentage', alias: 'roi' },
     { name: 'naked_ror', type: 'percentage', alias: 'naked_ror' },
-    { name: 'daily_simple_roi', type: 'percentage', alias: 'roi_day' },
+    { name: 'daily_cash_secured_put_roi', type: 'percentage', alias: 'roi_day' },
     //{ name: 'risk_adjusted_daily_simple_roi', type: 'percentage', alias: 'adj_roi_day' },
-    { name: 'annualized_simple_roi', type: 'percentage', alias: 'roi_year' },
+    { name: 'annualized_cash_secured_put_roi', type: 'percentage', alias: 'roi_year' },
 
     { name: 'implied_volatility', type: 'percentage', alias: 'iv' },
     { name: 'straddle_implied_move_percent', type: 'percentage', alias: 'impl_move_pct' },
