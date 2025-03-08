@@ -16,7 +16,7 @@ export const COLUMNS =[
 
     { name: 'simple_roi', type: 'percentage', alias: 'roi' },
     { name: 'daily_simple_roi', type: 'percentage', alias: 'daily_roi' },
-    { name: 'annualized_simple_roi', type: 'percentage', alias: 'annualized_roi' },
+    { name: 'annualized_simple_roi', type: 'percentage', alias: 'yearly_roi' },
 
     { name: 'risk_adjusted_daily_simple_roi', type: 'percentage', alias: 'adj_daily_roi' },
     { name: 'implied_volatility', type: 'percentage', alias: 'iv' },
