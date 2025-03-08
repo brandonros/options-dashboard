@@ -50,7 +50,7 @@ export const COLUMNS = [
     { name: 'annualized_naked_ror', type: 'percentage', alias: 'ror_naked_year' },
 
     { name: 'moneyness_ratio', type: 'percentage' },
-    { name: 'implied_moneyness', type: 'percentage' },
+    { name: 'implied_moneyness_percentage', type: 'percentage' },
 
     { name: 'premium_underlying_ratio', type: 'percentage' },
     { name: 'premium_iv_ratio', type: 'percentage' },
