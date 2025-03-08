@@ -73,6 +73,8 @@ export interface Row {
     daily_naked_ror: string
     annualized_secured_ror: string
     annualized_naked_ror: string
+    daily_simple_roi: string
+    annualized_simple_roi: string
     straddle_implied_move_percent: string
     straddle_implied_move_dollars: string
     volatility_implied_move_percent: string

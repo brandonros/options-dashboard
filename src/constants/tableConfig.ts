@@ -14,13 +14,9 @@ export const COLUMNS = [
     // { name: 'days_to_expiration', type: 'number' },
     { name: 'capital_commitment_period', type: 'number', alias: 'num_days' },
 
-    { name: 'secured_ror', type: 'percentage', alias: 'ror' },
-    { name: 'daily_secured_ror', type: 'percentage', alias: 'ror_day' },
-    { name: 'annualized_secured_ror', type: 'percentage', alias: 'ror_year' },
-
-    { name: 'naked_ror', type: 'percentage', alias: 'ror_naked' },
-    { name: 'daily_naked_ror', type: 'percentage', alias: 'ror_naked_day' },
-    { name: 'annualized_naked_ror', type: 'percentage', alias: 'ror_naked_year' },
+    { name: 'simple_roi', type: 'percentage', alias: 'roi' },
+    { name: 'daily_simple_roi', type: 'percentage', alias: 'roi_day' },
+    { name: 'annualized_simple_roi', type: 'percentage', alias: 'roi_year' },
 
     { name: 'implied_volatility', type: 'percentage', alias: 'iv' },
     { name: 'straddle_implied_move_percent', type: 'percentage', alias: 'impl_move_pct' },
@@ -44,6 +40,14 @@ export const COLUMNS = [
     { name: 'short_distance_to_breakeven', type: 'currency', alias: 'dist_to_breakeven_short' },
     { name: 'long_percentage_distance_to_breakeven', type: 'percentage', alias: 'dist_to_breakeven_long_pct' },
     { name: 'short_percentage_distance_to_breakeven', type: 'percentage', alias: 'dist_to_breakeven_short_pct' },
+
+    { name: 'secured_ror', type: 'percentage', alias: 'ror' },
+    { name: 'daily_secured_ror', type: 'percentage', alias: 'ror_day' },
+    { name: 'annualized_secured_ror', type: 'percentage', alias: 'ror_year' },
+
+    { name: 'naked_ror', type: 'percentage', alias: 'ror_naked' },
+    { name: 'daily_naked_ror', type: 'percentage', alias: 'ror_naked_day' },
+    { name: 'annualized_naked_ror', type: 'percentage', alias: 'ror_naked_year' },
 
     { name: 'moneyness_ratio', type: 'percentage' },
 
