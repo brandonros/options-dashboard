@@ -42,7 +42,16 @@ export const TableCell = ({
 }: TableCellProps) => {
     const getAnnotation = (columnName: string, columnType: string, value: any) => {
         if (columnName === 'prob_itm_at_expiration') {
-            return Number(value) > 10 ? '❌' : '✅';
+            // if 0.00 to 10.00, green ✅
+            // else if 10.01 to 20.00, yellow ⚠️
+            // else red ❌
+            if (Number(value) > 20) {
+                return '❌';
+            }
+            if (Number(value) > 10) {
+                return '⚠️';
+            }
+            return '✅';
         }
         if (columnName === 'daily_simple_roi') {
             return Number(value) <= 0.1 ? '❌' : '✅';
