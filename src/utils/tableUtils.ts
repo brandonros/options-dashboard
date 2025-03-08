@@ -27,9 +27,12 @@ export const calculateColumnWidth = (column: Column) => {
     if (column.name === 'volume') {
         return 80;
     }
+    if (column.name === 'expiration_date') {
+        return 100;
+    }
     const name = column.alias ? column.alias : column.name;
     if (name.length <= 6) {
         return 80;
     }
-    return name.length * 12;
+    return name.length * 10;
 }
