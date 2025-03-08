@@ -71,7 +71,7 @@ export const TableHeader = forwardRef<HTMLDivElement, TableHeaderProps>(({
                         }}
                         onClick={() => onSortChange(column.name, column.type)}
                     >
-                        {column.name} {getSortIndicator(sorts, column.name)}
+                        {column.alias || column.name} {getSortIndicator(sorts, column.name)}
                     </div>
                 ))}
             </div>

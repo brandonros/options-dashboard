@@ -15,6 +15,7 @@ export type Sorts = Sort[];
 export interface Column {
     name: string;
     type: string;
+    alias?: string;
 }
 
 export type Columns = Column[];
