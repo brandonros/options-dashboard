@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Route, HashRouter as Router, Routes } from 'react-router-dom'
 import { DataTable } from "./components/DataTable";
-import { Column, Row } from './types';
+import { Column, Row, Rows } from './types';
 import { COLUMNS } from './constants/tableConfig';
 import { dataService } from './services/dataService';
 import { exportCsv, exportJson } from './utils/export';
@@ -57,7 +57,22 @@ const AppContent = ({ advancedMode }: { advancedMode: boolean }) => {
         try {
             const filtered = risky ? false : true;
             const rows = await dataService.fetchTableData(filtered);
-            setRows(rows);
+            if (advancedMode) {
+                setRows(rows);
+            } else {
+                // remove advanced columns
+                const filteredRows: Rows = []
+                for (const row of rows) {
+                    const filteredRow: any = {}
+                    for (const column of COLUMNS) {
+                        if (!column.advanced) {
+                            filteredRow[column.name as keyof Row] = row[column.name as keyof Row];
+                        }
+                    }
+                    filteredRows.push(filteredRow);
+                }
+                setRows(filteredRows);
+            }
         } catch (err) {
             console.error('Failed to load table data:', err);
         } finally {
