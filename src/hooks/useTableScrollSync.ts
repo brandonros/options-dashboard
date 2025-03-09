@@ -8,7 +8,6 @@ export const useTableScrollSync = () => {
     useEffect(() => {
         const header = headerRef.current;
         const handleHeaderScroll = () => {
-            console.log(gridRef)
             if (gridRef.current && header) {
                 gridRef.current.scrollTo({ scrollLeft: header.scrollLeft });
             }

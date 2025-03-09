@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TableHeader } from './TableHeader';
 import { TableVirtualGrid } from './TableVirtualGrid';
 import { useTableScrollSync } from '../../hooks/useTableScrollSync';
@@ -46,6 +46,13 @@ export const DataTable: React.FC<DataTableProps> = ({ columns }) => {
         setFilters,
         setSorts
     } = useTableContext();
+
+    // workaround column width changes?
+    useEffect(() => {
+        if (gridRef.current) {
+            gridRef.current.resetAfterColumnIndex(0, true);
+        }
+    }, [filters, sorts, processedRows, totalRows]);
 
     const handleFilterChange = (key: string, value: string) => {
         setFilters({
