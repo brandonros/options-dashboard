@@ -16,7 +16,7 @@ const AppContent = ({ advancedMode }: { advancedMode: boolean }) => {
     const [pageLoadTime, _setPageLoadTime] = useState<Date>(new Date());
     const [isControlsVisible, setIsControlsVisible] = useState(false);
     const intervalRef = useRef<number | null>(null);
-    const { processedRows, setRows, rows } = useTableContext();
+    const { processedRows, setRows, rows, resetGrid } = useTableContext();
 
     const STYLES = {
         button: {
@@ -73,6 +73,7 @@ const AppContent = ({ advancedMode }: { advancedMode: boolean }) => {
                 }
                 setRows(filteredRows);
             }
+            resetGrid();
         } catch (err) {
             console.error('Failed to load table data:', err);
         } finally {

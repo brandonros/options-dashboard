@@ -1,6 +1,7 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useRef, useCallback } from 'react';
 import { useTableOperations } from '../hooks/useTableOperations';
 import { Filters, Sorts, Rows } from '../types';
+import { VariableSizeGrid } from 'react-window';
 
 // Define the context type
 export interface TableContextType {
@@ -12,6 +13,8 @@ export interface TableContextType {
     setFilters: (filters: Filters) => void;
     setSorts: (sorts: Sorts) => void;
     setRows: (rows: Rows) => void;
+    gridRef: React.MutableRefObject<VariableSizeGrid | null>;
+    resetGrid: () => void;
 }
 
 // Create context with the correct type
@@ -31,8 +34,15 @@ export const TableProvider: React.FC<{
     const [rows, setRows] = useState<Rows>(initialRows);
     const [filters, setFilters] = useState<Filters>(initialFilters);
     const [sorts, setSorts] = useState<Sorts>(initialSorts);
+    const gridRef = useRef<VariableSizeGrid>(null);
     
     const tableOperations = useTableOperations(rows, filters, sorts);
+
+    const resetGrid = useCallback(() => {
+        if (gridRef.current) {
+            gridRef.current.resetAfterColumnIndex(0, true);
+        }
+    }, []);
 
     const value: TableContextType = {
         rows,
@@ -42,7 +52,9 @@ export const TableProvider: React.FC<{
         setSorts,
         setRows,
         processedRows: tableOperations.processedRows,
-        totalRows: tableOperations.totalRows
+        totalRows: tableOperations.totalRows,
+        gridRef,
+        resetGrid
     };
 
     return (
