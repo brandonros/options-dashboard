@@ -55,10 +55,14 @@ const AppContent = ({ advancedMode }: { advancedMode: boolean }) => {
     const loadData = async () => {
         setIsLoading(true);
         try {
+            setRows([]);
+            resetGrid();
+
             const filtered = risky ? false : true;
             const rows = await dataService.fetchTableData(filtered);
             if (advancedMode) {
                 setRows(rows);
+                resetGrid();
             } else {
                 // remove advanced columns
                 const filteredRows: Rows = []
@@ -72,8 +76,8 @@ const AppContent = ({ advancedMode }: { advancedMode: boolean }) => {
                     filteredRows.push(filteredRow);
                 }
                 setRows(filteredRows);
+                resetGrid();
             }
-            resetGrid();
         } catch (err) {
             console.error('Failed to load table data:', err);
         } finally {
