@@ -65,7 +65,7 @@ const AppContent = ({ advancedMode }: { advancedMode: boolean }) => {
                 for (const row of rows) {
                     const filteredRow: any = {}
                     for (const column of COLUMNS) {
-                        if (!column.advanced) {
+                        if (!column.advanced || column.name === 'scraped_at') {
                             filteredRow[column.name as keyof Row] = row[column.name as keyof Row];
                         }
                     }
