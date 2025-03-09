@@ -124,7 +124,7 @@ const AppContent = ({ advancedMode }: { advancedMode: boolean }) => {
 
     useEffect(() => {
         loadData();
-    }, [risky]);
+    }, [risky, advancedMode]);
 
     useEffect(() => {
         // autorefresh off but interval exists, clear it
