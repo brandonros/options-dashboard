@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+import { Route, HashRouter as Router, Routes } from 'react-router-dom'
 import { DataTable } from "./components/DataTable";
 import { Row } from './types';
 import { COLUMNS } from './constants/tableConfig';
@@ -243,14 +244,22 @@ const AppContent = () => {
 
 export default () => {
     return (
-        <TableProvider
-            initialSorts={[{
-                key: 'daily_simple_roi',
-                type: 'percentage',
-                direction: 'desc'
-            }]}
-        >
-            <AppContent />
-        </TableProvider>
+        <Router>
+            <Routes>
+                <Route path="/" element={
+                    <TableProvider
+                        initialSorts={[{
+                        key: 'daily_simple_roi',
+                        type: 'percentage',
+                        direction: 'desc'
+                        }]}
+                    >
+                        <AppContent />
+                        </TableProvider>
+                    }
+                />
+                <Route path="/test" element={<div>test</div>} />
+            </Routes>
+        </Router>
     );
 };
