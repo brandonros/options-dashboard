@@ -30,7 +30,7 @@ export const COLUMNS = [
 
     { name: 'volume', type: 'number', alias: 'volume' },
     { name: 'open_interest', type: 'number', alias: 'oi' },
-    { name: 'volume_open_interest_ratio', type: 'percentage', alias: 'volume_oi_ratio' },
+    { name: 'volume_open_interest_ratio', type: 'percentage', alias: 'volume_oi_ratio', advanced: true },
 
     { name: 'intrinsic_value', type: 'currency', alias: 'int_value', advanced: true },
     { name: 'extrinsic_value', type: 'currency', alias: 'ext_value', advanced: true },
