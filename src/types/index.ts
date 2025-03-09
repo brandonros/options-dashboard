@@ -16,6 +16,7 @@ export interface Column {
     name: string;
     type: string;
     alias?: string;
+    advanced?: boolean;
 }
 
 export type Columns = Column[];

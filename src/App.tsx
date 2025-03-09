@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Route, HashRouter as Router, Routes } from 'react-router-dom'
 import { DataTable } from "./components/DataTable";
-import { Row } from './types';
+import { Column, Row } from './types';
 import { COLUMNS } from './constants/tableConfig';
 import { dataService } from './services/dataService';
 import { exportCsv, exportJson } from './utils/export';
 import { TableProvider, useTableContext } from './providers/TableProvider';
 
-const AppContent = () => {
+const AppContent = ({ advancedMode }: { advancedMode: boolean }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [extended, setExtended] = useState(false);
     const [risky, setRisky] = useState(false);
@@ -86,6 +86,13 @@ const AppContent = () => {
             setIsLoading(false);
         }
     };
+
+    const filterColumns = (advancedMode: boolean, columns: Column[]) => {
+        if (advancedMode) {
+            return columns;
+        }
+        return columns.filter(column => !column.advanced);
+    }
 
     useEffect(() => {
         if (rows.length > 0) {
@@ -235,7 +242,7 @@ const AppContent = () => {
 
             <div style={{ flex: 1, minHeight: 0, paddingBottom: '20px' }}>
                 <DataTable
-                    columns={COLUMNS}
+                    columns={filterColumns(advancedMode, COLUMNS)}
                 />
             </div>
         </div>
@@ -249,16 +256,25 @@ export default () => {
                 <Route path="/" element={
                     <TableProvider
                         initialSorts={[{
-                        key: 'daily_simple_roi',
-                        type: 'percentage',
-                        direction: 'desc'
+                            key: 'daily_simple_roi',
+                            type: 'percentage',
+                            direction: 'desc'
                         }]}
                     >
-                        <AppContent />
-                        </TableProvider>
-                    }
-                />
-                <Route path="/test" element={<div>test</div>} />
+                        <AppContent advancedMode={false} />
+                    </TableProvider>
+                } />
+                <Route path="/advanced" element={
+                    <TableProvider
+                        initialSorts={[{
+                            key: 'daily_simple_roi',
+                            type: 'percentage',
+                            direction: 'desc'
+                        }]}
+                    >
+                        <AppContent advancedMode={true} />
+                    </TableProvider>
+                } />
             </Routes>
         </Router>
     );
