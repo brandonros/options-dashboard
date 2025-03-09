@@ -252,6 +252,12 @@ const AppContent = ({ advancedMode }: { advancedMode: boolean }) => {
                             value="export json" 
                         />
                     </div>
+
+                    {/* navigation row */}
+                    <div style={STYLES.row}>
+                        <a href="#/">basic</a>
+                        <a href="#/advanced">advanced</a>
+                    </div>
                 </div>
             )}
 
