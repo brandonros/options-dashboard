@@ -81,7 +81,7 @@ export const DataTable: React.FC<DataTableProps> = ({ columns }) => {
         setHoverRowIndex(isHovered ? rowIndex : -1);
     };
 
-    const handleRowClick = (rowIndex: number, event: React.MouseEvent) => {
+    const handleRowClick = async (rowIndex: number, event: React.MouseEvent) => {
         setPopup({
             rowIndex,
             isVisible: popup.rowIndex !== rowIndex || !popup.isVisible,
@@ -89,11 +89,12 @@ export const DataTable: React.FC<DataTableProps> = ({ columns }) => {
             y: event.clientY
         });
         const row = processedRows[rowIndex];
-        navigator.clipboard.writeText(JSON.stringify(row, null, 2))
-        .then(() => {
+        try {
+            await navigator.clipboard.writeText(JSON.stringify(row, null, 2));
             console.log('Row data copied to clipboard');
-        })
-        .catch(err => console.error('Failed to copy to clipboard:', err));
+        } catch (err) {
+            console.error('Failed to copy to clipboard:', err);
+        }
     };
 
     return (
