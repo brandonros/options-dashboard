@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import { VariableSizeGrid, GridOnScrollProps } from 'react-window';
+import { VariableSizeGrid } from 'react-window';
 
 export const useTableScrollSync = () => {
     const gridRef = useRef<VariableSizeGrid>(null);
@@ -8,6 +8,7 @@ export const useTableScrollSync = () => {
     useEffect(() => {
         const header = headerRef.current;
         const handleHeaderScroll = () => {
+            console.log(gridRef)
             if (gridRef.current && header) {
                 gridRef.current.scrollTo({ scrollLeft: header.scrollLeft });
             }
