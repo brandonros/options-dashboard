@@ -83,20 +83,19 @@ const AppContent = ({ advancedMode }: { advancedMode: boolean }) => {
     }
 
     const handleUpdateClick = async () => {
-        // Check if more than 5 minutes have elapsed since page load
-        const minutesSinceLoad = (Date.now() - pageLoadTime.getTime()) / (1000 * 60);
-        if (minutesSinceLoad > 5) {
-            console.log('Page has been loaded for over 5 minutes. Please refresh the page to update.');
-            return;
-        }
-
         const start = performance.now();
         setIsLoading(true);
         try {
+            // Check if more than 5 minutes have elapsed since page load
+            const minutesSinceLoad = (Date.now() - pageLoadTime.getTime()) / (1000 * 60);
+            if (minutesSinceLoad > 5) {
+               throw new Error('Page has been loaded for over 5 minutes. Please refresh the page to update.');
+            }
             await dataService.updateTableData(extended);
             await loadData();
-        } catch (err) {
+        } catch (err: any) {
             console.error('Failed to update table data:', err);
+            alert(err.message);
         } finally {
             const elapsed = performance.now() - start;
             console.log(`Update completed in ${elapsed.toFixed(2)}ms`);
